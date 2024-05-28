@@ -4,6 +4,7 @@ import (
 	"github.com/fogleman/gg"
 
 	"github.com/gitchander/godigits/geom"
+	"github.com/gitchander/godigits/numbers"
 )
 
 type DigitDrawer interface {
@@ -74,10 +75,10 @@ func (p *digitDrawer1) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 		c.LineTo(dA, 4*dA-dB)
 	}
 
-	trits := []int{1, -1, 0, 0}
+	trits := calcTrits(digit, 4)
 
 	// Segments:
-	if true {
+	if false {
 		for i := range trits {
 			drawSegment(0, i, (i%2) == 0)
 			drawSegment(1, i, (i%2) != 0)
@@ -107,4 +108,13 @@ func clamp(x float64, min, max float64) float64 {
 		return max
 	}
 	return x
+}
+
+func calcTrits(x int, n int) []int {
+	b := numbers.Bal3
+	trits := make([]int, n)
+	for i := range trits {
+		x, trits[i] = numbers.RestDigit(b, x)
+	}
+	return trits
 }

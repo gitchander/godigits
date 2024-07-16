@@ -11,40 +11,46 @@ import (
 )
 
 func main() {
+	makeDigit2()
+}
 
-	nA := 20
-	dA := float64(nA)
+func makeDigit2() {
 
-	digitSize := image.Pt(nA*2, nA*4)
+	var (
+		sizeX = 60
+		sizeY = sizeX * 2
+	)
+	digitSize := image.Pt(sizeX, sizeY)
 
-	d := bal81.Digit1{
-		A: dA,
-		B: dA * 0.2,
-		C: dA * 0.2,
-	}.DigitDrawer()
+	// dA := 30.0
+	// d := bal81.Digit1{
+	// 	A: dA,
+	// 	B: dA * 0.2,
+	// 	C: dA * 0.2,
+	// }.DigitDrawer()
 
-	//digits := []int{-4, -3, -2, 2, 3, 4, 40}
+	d := bal81.Digit2{}
+
+	//digits := []int{40, 40}
+	//digits := []int{-3, -2, -1, 0, 1, 2, 3}
 	//digits := serialInts(7)
-	digits := intervalInts(-6, 6)
+	//digits := intervalInts(-6, 6)
+	digits := intervalInts(-40, 40)
 
-	c := gg.NewContext(digitSize.X*len(digits), digitSize.Y)
+	var (
+		nX = 9
+		nY = 9
+	)
+	c := gg.NewContext(digitSize.X*nX, digitSize.Y*nY)
 
 	if true {
 		c.SetRGB(1, 1, 1)
 		c.Clear()
 	}
 
-	c.SetRGB(0, 0, 0)
+	drawMatrix(c, d, nX, nY, digitSize, digits)
 
-	b := geom.MakeBounds(0, 0, float64(digitSize.X), float64(digitSize.Y))
-	bsh := geom.MakePoint(float64(digitSize.X), 0)
-
-	for _, digit := range digits {
-		d.DrawDigit(c, b, digit)
-		b = b.Add(bsh)
-	}
-
-	err := c.SavePNG("result.png")
+	err := c.SavePNG("digit2_matrix.png")
 	checkError(err)
 }
 
@@ -69,4 +75,34 @@ func intervalInts(min, max int) []int {
 		a[i] = min + i
 	}
 	return a
+}
+
+func drawBounds(c *gg.Context, b geom.Bounds) {
+	c.DrawRectangle(b.Min.X, b.Min.Y, b.Max.X, b.Max.Y)
+}
+
+func drawMatrix(c *gg.Context, d bal81.DigitDrawer, nX, nY int,
+	digitSize image.Point, digits []int) {
+	for y := 0; y < nY; y++ {
+		for x := 0; x < nX; x++ {
+			b := geom.MakeBounds(
+				float64((x+0)*digitSize.X), float64((y+0)*digitSize.Y),
+				float64((x+1)*digitSize.X), float64((y+1)*digitSize.Y),
+			)
+			if true {
+				if ((x + y) % 2) == 0 {
+					c.SetRGB(0.7, 0.9, 1)
+				} else {
+					c.SetRGB(1, 1, 1)
+				}
+				drawBounds(c, b)
+				c.Fill()
+			}
+			if len(digits) > 0 {
+				c.SetRGB(0, 0, 0)
+				d.DrawDigit(c, b, digits[0])
+				digits = digits[1:]
+			}
+		}
+	}
 }

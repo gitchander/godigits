@@ -24,3 +24,17 @@ func (a Point) Sub(b Point) Point {
 		Y: a.Y - b.Y,
 	}
 }
+
+func (a Point) MulScalar(scalar float64) Point {
+	return Point{
+		X: a.X * scalar,
+		Y: a.Y * scalar,
+	}
+}
+
+func (a Point) DivScalar(scalar float64) Point {
+	return Point{
+		X: a.X / scalar,
+		Y: a.Y / scalar,
+	}
+}

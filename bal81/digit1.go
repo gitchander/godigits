@@ -4,12 +4,7 @@ import (
 	"github.com/fogleman/gg"
 
 	"github.com/gitchander/godigits/geom"
-	"github.com/gitchander/godigits/numbers"
 )
-
-type DigitDrawer interface {
-	DrawDigit(c *gg.Context, b geom.Bounds, digit int)
-}
 
 type Digit1 struct {
 	A float64 // 0 <= A
@@ -30,6 +25,8 @@ func (d Digit1) DigitDrawer() DigitDrawer {
 	}
 }
 
+//------------------------------------------------------------------------------
+
 type digitDrawer1 struct {
 	a, b, c float64
 }
@@ -49,6 +46,17 @@ func (p *digitDrawer1) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 	c.SetLineWidth(dC)
 	c.Translate(b.Min.X, b.Min.Y)
 
+	// Draw vertical lines
+	if true {
+		c.MoveTo(dA, 0*dA+dB)
+		c.LineTo(dA, 2*dA-dB)
+
+		c.MoveTo(dA, 2*dA+dB)
+		c.LineTo(dA, 4*dA-dB)
+	}
+
+	trits := calcTrits(digit, 4)
+
 	drawSegment := func(x, y int, rev bool) {
 		var (
 			x0 = float64(x + 0)
@@ -66,17 +74,6 @@ func (p *digitDrawer1) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 		}
 	}
 
-	// Draw vertical lines
-	if true {
-		c.MoveTo(dA, 0*dA+dB)
-		c.LineTo(dA, 2*dA-dB)
-
-		c.MoveTo(dA, 2*dA+dB)
-		c.LineTo(dA, 4*dA-dB)
-	}
-
-	trits := calcTrits(digit, 4)
-
 	// Segments:
 	if false {
 		for i := range trits {
@@ -88,33 +85,11 @@ func (p *digitDrawer1) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 			switch trit {
 			case -1:
 				drawSegment(0, i, (i%2) == 0)
-			case 1:
+			case +1:
 				drawSegment(1, i, (i%2) != 0)
 			}
 		}
 	}
 
 	c.Stroke()
-}
-
-func clamp(x float64, min, max float64) float64 {
-	if min > max {
-		return 0
-	}
-	if x < min {
-		return min
-	}
-	if x > max {
-		return max
-	}
-	return x
-}
-
-func calcTrits(x int, n int) []int {
-	b := numbers.Bal3
-	trits := make([]int, n)
-	for i := range trits {
-		x, trits[i] = numbers.RestDigit(b, x)
-	}
-	return trits
 }

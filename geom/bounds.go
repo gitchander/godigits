@@ -39,3 +39,7 @@ func (b Bounds) Sub(p Point) Bounds {
 		Max: b.Max.Sub(p),
 	}
 }
+
+func (b Bounds) Center() Point {
+	return (b.Min.Add(b.Max)).DivScalar(2)
+}

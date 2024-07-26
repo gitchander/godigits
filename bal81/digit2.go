@@ -11,11 +11,12 @@ type Digit2 struct{}
 func (Digit2) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
 	const (
-		//koefDA = 0.4
-		koefDA = 0.5
+		koefDA = 0.4
+		//koefDA = 0.5
 
+		koefLineWidth = 0.75
 		//koefLineWidth = 0.8
-		koefLineWidth = 0.9
+		//koefLineWidth = 0.9
 		//koefLineWidth = 1.0
 
 		//enableAll = true

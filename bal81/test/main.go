@@ -1,10 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"image"
 	"log"
 
 	"github.com/fogleman/gg"
+	"github.com/golang/freetype/truetype"
+	"golang.org/x/image/font/gofont/goregular"
 
 	"github.com/gitchander/godigits/bal81"
 	"github.com/gitchander/godigits/geom"
@@ -48,9 +51,13 @@ func makeDigit2() {
 		c.Clear()
 	}
 
+	fontSize := float64(digitSize.Y) * 0.1
+	err := setFont(c, fontSize)
+	checkError(err)
+
 	drawMatrix(c, d, nX, nY, digitSize, digits)
 
-	err := c.SavePNG("digit2_matrix.png")
+	err = c.SavePNG("digit2_matrix.png")
 	checkError(err)
 }
 
@@ -99,10 +106,28 @@ func drawMatrix(c *gg.Context, d bal81.DigitDrawer, nX, nY int,
 				c.Fill()
 			}
 			if len(digits) > 0 {
-				c.SetRGB(0, 0, 0)
-				d.DrawDigit(c, b, digits[0])
+				digit := digits[0]
 				digits = digits[1:]
+
+				c.SetRGB(0, 0, 0)
+				c.DrawString(fmt.Sprintf("%d", digit), b.Min.X, b.Min.Y+c.FontHeight())
+
+				c.SetRGB(0, 0, 0)
+				d.DrawDigit(c, b, digit)
 			}
 		}
 	}
+}
+
+func setFont(c *gg.Context, fontSize float64) error {
+
+	font, err := truetype.Parse(goregular.TTF)
+	if err != nil {
+		return err
+	}
+
+	face := truetype.NewFace(font, &truetype.Options{Size: fontSize})
+	c.SetFontFace(face)
+
+	return nil
 }

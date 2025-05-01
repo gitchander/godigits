@@ -91,22 +91,22 @@ var _ Object = Aspector{}
 
 func (Aspector) IsObject() {}
 
-func (v Aspector) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Aspector) Draw(c *cairo.Canvas, b Bounds, level int) {
 
 	if v.Content == nil {
 		return
 	}
 
-	cr := subRectByAspectRatio(r, v.AspectRatio)
+	cr := subRectByAspectRatio(b, v.AspectRatio)
 
 	v.Content.Draw(c, cr, level+1)
 }
 
-func subRectByAspectRatio(r geom.Rectangle2f, aspectRatio float64) geom.Rectangle2f {
+func subRectByAspectRatio(b Bounds, aspectRatio float64) geom.Rectangle2f {
 
 	var (
-		dx = r.Dx()
-		dy = r.Dy()
+		dx = b.Dx()
+		dy = b.Dy()
 	)
 
 	var (
@@ -128,7 +128,7 @@ func subRectByAspectRatio(r geom.Rectangle2f, aspectRatio float64) geom.Rectangl
 		}
 	}
 
-	center := r.Center()
+	center := b.Center()
 	f := geom.MakeFrame2(dx, dy).DivScalar(2)
 	r1 := geom.PointToRect2f(center).Grow(f)
 

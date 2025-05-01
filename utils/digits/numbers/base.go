@@ -1,5 +1,6 @@
 package numbers
 
+// digits for interval: [min, max-1]
 type Base struct {
 	Min, Max int
 }
@@ -11,6 +12,7 @@ func MakeBase(min, max int) Base {
 	}
 }
 
+// Closed Max value: [min, max]
 func BaseClosed(min, max int) Base {
 	return MakeBase(min, (max + 1))
 }

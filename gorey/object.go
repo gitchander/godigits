@@ -6,8 +6,10 @@ import (
 	"github.com/gitchander/godigits/geom"
 )
 
+type Bounds = geom.Rectangle2f
+
 type Object interface {
 	IsObject()
 
-	Draw(c *cairo.Canvas, r geom.Rectangle2f, level int)
+	Draw(c *cairo.Canvas, b Bounds, level int)
 }

@@ -1,10 +1,9 @@
-package main
+package bal81
 
 import (
 	"github.com/fogleman/gg"
 
 	"github.com/gitchander/godigits/dgdr"
-	"github.com/gitchander/godigits/digits/bal81"
 )
 
 type Digit6 struct{}
@@ -155,7 +154,7 @@ func (d Digit6) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 
 	//--------------------------------------------------------------------------
 
-	bs := bal81.CalcDigitsBal3(digit)
+	bs := CalcDigitsBal3(digit)
 
 	n := minInt(len(nodes), len(bs))
 

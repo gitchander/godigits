@@ -83,14 +83,14 @@ func (d Digit2) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 
 	// Rays:
 	for i, vertex := range vertexes {
-		if gobits.Uint16GetBit(v, i) == 1 {
+		if gobits.GetBit(v, i) == 1 {
 			drawSegment(center, vertex)
 		}
 	}
 
 	// Edges:
 	for i, vertex := range vertexes {
-		if gobits.Uint16GetBit(v, 6+i) == 1 {
+		if gobits.GetBit(v, 6+i) == 1 {
 			next := vertexes[(i+1)%len(vertexes)]
 			drawSegment(vertex, next)
 		}
@@ -115,14 +115,14 @@ func digitSegmentsV1(digit int) uint16 {
 	)
 
 	for _, on := range ons {
-		x = gobits.Uint16SetBit(x, on, 1)
+		x = gobits.SetBit(x, on, 1)
 	}
 	n := minInt(4, len(bs))
 	for i := 0; i < n; i++ {
 		if bs[i] == 1 {
-			x = gobits.Uint16SetBit(x, positives[i], 1)
+			x = gobits.SetBit(x, positives[i], 1)
 		} else if bs[i] == -1 {
-			x = gobits.Uint16SetBit(x, negatives[i], 1)
+			x = gobits.SetBit(x, negatives[i], 1)
 		}
 	}
 
@@ -187,14 +187,14 @@ func digitSegmentsV2(digit int) uint16 {
 	//--------------------------------------------------------------------------
 
 	for _, on := range ons {
-		x = gobits.Uint16SetBit(x, on, 1)
+		x = gobits.SetBit(x, on, 1)
 	}
 	n := minInt(3, len(bs))
 	for i := 0; i < n; i++ {
 		if bs[i] == 1 {
-			x = gobits.Uint16SetBit(x, positives[i], 1)
+			x = gobits.SetBit(x, positives[i], 1)
 		} else if bs[i] == -1 {
-			x = gobits.Uint16SetBit(x, negatives[i], 1)
+			x = gobits.SetBit(x, negatives[i], 1)
 		}
 	}
 

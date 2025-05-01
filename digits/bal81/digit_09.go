@@ -1,4 +1,4 @@
-package main
+package bal81
 
 import (
 	"github.com/fogleman/gg"

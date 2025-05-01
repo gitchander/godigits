@@ -101,14 +101,14 @@ func (d DigitV2) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 
 	// Rays:
 	for i, p := range ps {
-		if gobits.Uint16GetBit(v, i) == 1 {
+		if gobits.GetBit(v, i) == 1 {
 			drawLine(center, p)
 		}
 	}
 
 	// Edges:
 	for i, p := range ps {
-		if gobits.Uint16GetBit(v, 6+i) == 1 {
+		if gobits.GetBit(v, 6+i) == 1 {
 			next := ps[(i+1)%len(ps)]
 			drawLine(p, next)
 		}

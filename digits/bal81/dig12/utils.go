@@ -1,7 +1,7 @@
-package bal81
+package dig12
 
 import (
-	"github.com/gitchander/godigits/numbers"
+	"github.com/gitchander/godigits/utils/digits"
 )
 
 func clamp(x float64, min, max float64) float64 {
@@ -18,10 +18,15 @@ func clamp(x float64, min, max float64) float64 {
 }
 
 func calcTrits(x int, n int) []int {
-	b := numbers.Bal3
+	const (
+		min = -1 // digit min
+		max = +1 // digit max
+	)
 	trits := make([]int, n)
+	var trit int
 	for i := range trits {
-		x, trits[i] = numbers.RestDigit(b, x)
+		x, trit = digits.RestDigit(x, min, max)
+		trits[i] = trit
 	}
 	return trits
 }

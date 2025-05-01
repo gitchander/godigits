@@ -1,10 +1,9 @@
-package main
+package bal81
 
 import (
 	"github.com/fogleman/gg"
 
 	"github.com/gitchander/godigits/dgdr"
-	"github.com/gitchander/godigits/digits/bal81"
 )
 
 type Digit4 struct{}
@@ -46,7 +45,7 @@ func (d Digit4) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 		y1, y2, y3 float64 = 2, 4, 6
 	)
 
-	bs := bal81.CalcDigitsBal3(digit)
+	bs := CalcDigitsBal3(digit)
 
 	if true {
 		c.MoveTo(x1, y1)
@@ -169,8 +168,4 @@ func (d Digit4) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 	}
 
 	c.Stroke()
-}
-
-func middle(a, b float64) float64 {
-	return (a + b) / 2
 }

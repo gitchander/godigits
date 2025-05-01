@@ -9,7 +9,7 @@ import (
 	"github.com/golang/freetype/truetype"
 	"golang.org/x/image/font/gofont/goregular"
 
-	"github.com/gitchander/godigits/bal81"
+	"github.com/gitchander/godigits/digits/bal81/dig12"
 	"github.com/gitchander/godigits/geom"
 )
 
@@ -26,13 +26,13 @@ func makeDigit2() {
 	digitSize := image.Pt(sizeX, sizeY)
 
 	// dA := 30.0
-	// d := bal81.Digit1{
+	// d := dig12.Digit1{
 	// 	A: dA,
 	// 	B: dA * 0.2,
 	// 	C: dA * 0.2,
 	// }.DigitDrawer()
 
-	d := bal81.Digit2{}
+	d := dig12.Digit2{}
 
 	//digits := []int{40, 40}
 	//digits := []int{-3, -2, -1, 0, 1, 2, 3}
@@ -88,7 +88,7 @@ func drawBounds(c *gg.Context, b geom.Bounds) {
 	c.DrawRectangle(b.Min.X, b.Min.Y, b.Max.X, b.Max.Y)
 }
 
-func drawMatrix(c *gg.Context, d bal81.DigitDrawer, nX, nY int,
+func drawMatrix(c *gg.Context, d dig12.DigitDrawer, nX, nY int,
 	digitSize image.Point, digits []int) {
 	for y := 0; y < nY; y++ {
 		for x := 0; x < nX; x++ {

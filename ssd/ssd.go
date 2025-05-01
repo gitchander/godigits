@@ -57,26 +57,26 @@ func runeToIndex(r byte) int {
 }
 
 func segmentIsOn(x uint8, b byte) bool {
-	return gobits.Uint8GetBit(x, charToIndex(b)) == 1
+	return gobits.GetBit(x, charToIndex(b)) == 1
 }
 
 func flipSegmentsVertical(x uint8) uint8 {
 
 	var (
-		f = gobits.Uint8GetBit(x, charToIndex('f'))
-		b = gobits.Uint8GetBit(x, charToIndex('b'))
+		f = gobits.GetBit(x, charToIndex('f'))
+		b = gobits.GetBit(x, charToIndex('b'))
 
-		e = gobits.Uint8GetBit(x, charToIndex('e'))
-		c = gobits.Uint8GetBit(x, charToIndex('c'))
+		e = gobits.GetBit(x, charToIndex('e'))
+		c = gobits.GetBit(x, charToIndex('c'))
 	)
 
 	// f <-> b
-	x = gobits.Uint8SetBit(x, charToIndex('f'), b)
-	x = gobits.Uint8SetBit(x, charToIndex('b'), f)
+	x = gobits.SetBit(x, charToIndex('f'), b)
+	x = gobits.SetBit(x, charToIndex('b'), f)
 
 	// e <-> c
-	x = gobits.Uint8SetBit(x, charToIndex('e'), c)
-	x = gobits.Uint8SetBit(x, charToIndex('c'), e)
+	x = gobits.SetBit(x, charToIndex('e'), c)
+	x = gobits.SetBit(x, charToIndex('c'), e)
 
 	return x
 }

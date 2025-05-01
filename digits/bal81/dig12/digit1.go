@@ -1,4 +1,4 @@
-package bal81
+package dig12
 
 import (
 	"github.com/fogleman/gg"

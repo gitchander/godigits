@@ -10,9 +10,6 @@ import (
 )
 
 func main() {
-	//drawDigit11()
-	//return
-
 	dgdr.DrawGreedEnable = false
 
 	checkError(testGG())
@@ -23,6 +20,19 @@ func checkError(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+type sample struct {
+	dirName     string
+	dd          dgdr.DigitDrawer
+	fileSuffix  string
+	digitHeight float64
+}
+
+func makeSample(se sample) error {
+	ds := utils.MakeInts(-40, 41, 1)
+	filename := filepath.Join(se.dirName, ("digits" + se.fileSuffix + ".png"))
+	return dgdr.MakeDigitsImageMatrix(filename, se.dd, 9, 9, se.digitHeight, ds)
 }
 
 func testGG() error {
@@ -50,49 +60,49 @@ func testGG() error {
 		},
 		{
 			dirName:     dirName,
-			dd:          Digit3{},
+			dd:          bal81.Digit3{},
 			fileSuffix:  "_v3_gg",
 			digitHeight: digitHeight,
 		},
 		{
 			dirName:     dirName,
-			dd:          Digit4{},
+			dd:          bal81.Digit4{},
 			fileSuffix:  "_v4_gg",
 			digitHeight: digitHeight,
 		},
 		{
 			dirName:     dirName,
-			dd:          Digit5{},
+			dd:          bal81.Digit5{},
 			fileSuffix:  "_v5_gg",
 			digitHeight: 120,
 		},
 		{
 			dirName:     dirName,
-			dd:          Digit6{},
+			dd:          bal81.Digit6{},
 			fileSuffix:  "_v6_gg",
 			digitHeight: 120,
 		},
 		{
 			dirName:     dirName,
-			dd:          Digit7{},
+			dd:          bal81.Digit7{},
 			fileSuffix:  "_v7_gg",
 			digitHeight: digitHeight,
 		},
 		{
 			dirName:     dirName,
-			dd:          Digit8{},
+			dd:          bal81.Digit8{},
 			fileSuffix:  "_v8_gg",
 			digitHeight: digitHeight,
 		},
 		{
 			dirName:     dirName,
-			dd:          Digit9{},
+			dd:          bal81.Digit9{},
 			fileSuffix:  "_v9_gg",
 			digitHeight: 120,
 		},
 		{
 			dirName:     dirName,
-			dd:          Digit10{},
+			dd:          bal81.Digit10{},
 			fileSuffix:  "_v10_gg",
 			digitHeight: 120,
 		},

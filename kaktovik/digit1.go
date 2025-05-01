@@ -7,8 +7,6 @@ import (
 	"github.com/gitchander/godigits/utils"
 )
 
-// https://en.wikipedia.org/wiki/Kaktovik_numerals
-
 type Digit1 struct{}
 
 var _ dgdr.DigitDrawer = Digit1{}

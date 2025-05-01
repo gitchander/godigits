@@ -16,8 +16,8 @@ import (
 func main() {
 	checkError(makeObjectImage())
 	checkError(makeDigitImage())
-	//checkError(makeDigitsImage())
-	//checkError(makeDigitsImageMatrix())
+	checkError(makeDigitsImage())
+	checkError(makeDigitsImageMatrix())
 }
 
 // parts of speech
@@ -63,7 +63,7 @@ func makeObjectImage() error {
 			Objects: []gorey.Object{
 				gorey.RoundRect{
 					Content: gorey.Caret{
-						Content: gorey.Heart{},
+						Content: gorey.Infinity{},
 					},
 				},
 				gorey.Rectangle{

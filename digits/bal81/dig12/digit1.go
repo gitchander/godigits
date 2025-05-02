@@ -3,6 +3,7 @@ package dig12
 import (
 	"github.com/fogleman/gg"
 
+	"github.com/gitchander/godigits/dgdr"
 	"github.com/gitchander/godigits/geom"
 )
 
@@ -12,7 +13,7 @@ type Digit1 struct {
 	C float64 // 0 <= C <= (B/2)
 }
 
-func (d Digit1) DigitDrawer() DigitDrawer {
+func (d Digit1) DigitDrawer() dgdr.DigitDrawerB {
 	var (
 		dA = d.A
 		dB = clamp(d.B, 0, dA/2)
@@ -23,6 +24,15 @@ func (d Digit1) DigitDrawer() DigitDrawer {
 		b: dB,
 		c: dC,
 	}
+}
+
+func MakeDigit1_p1() dgdr.DigitDrawerB {
+	dA := 30.0
+	return Digit1{
+		A: dA,
+		B: dA * 0.26,
+		C: dA * 0.2,
+	}.DigitDrawer()
 }
 
 //------------------------------------------------------------------------------

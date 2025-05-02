@@ -6,39 +6,61 @@ import (
 	"github.com/gitchander/godigits/utils/overflows"
 )
 
-type Digiter struct {
+type Digiter1 struct {
 	min, max int
 	base     int
+
+	rd RestDigiter
 }
 
-func NewDigiter(min, max int) *Digiter {
+var _ RestDigiter = &Digiter1{}
+
+func NewDigiter1(min, max int) (*Digiter1, error) {
+
 	if min > max {
-		panic("interval is empty")
+		return nil, fmt.Errorf("Invalid interval (%d,%d)", min, max)
 	}
-	return &Digiter{
-		min:  min,
-		max:  max,
+	rd, err := NewRestDigiter(min, max)
+	if err != nil {
+		return nil, err
+	}
+
+	d := &Digiter1{
+		min: min,
+		max: max,
+
 		base: (max - min + 1),
+
+		rd: rd,
 	}
+	return d, nil
 }
 
-func (d *Digiter) checkDigit(digit int) error {
+func MustNewDigiter1(min, max int) *Digiter1 {
+	d, err := NewDigiter1(min, max)
+	if err != nil {
+		panic(err)
+	}
+	return d
+}
+
+func (d *Digiter1) checkDigit(digit int) error {
 	if (d.min <= digit) && (digit <= d.max) {
 		return nil
 	}
 	return fmt.Errorf("invalid digit %d, want interval [%d .. %d]", digit, d.min, d.max)
 }
 
-func (d *Digiter) Base() int {
+func (d *Digiter1) Base() int {
 	return d.base
 }
 
-func (d *Digiter) RestDigit(x int) (rest, digit int) {
-	return RestDigit(x, d.min, d.max)
+func (d *Digiter1) RestDigit(x int) (rest, digit int) {
+	return d.rd.RestDigit(x)
 }
 
 // dl - digit interval
-func (d *Digiter) IntToDigits(v int, ds []int) (rest int) {
+func (d *Digiter1) IntToDigits(v int, ds []int) (rest int) {
 	var digit int
 	for i := range ds {
 		v, digit = d.RestDigit(v)
@@ -48,7 +70,7 @@ func (d *Digiter) IntToDigits(v int, ds []int) (rest int) {
 	return rest
 }
 
-func (d *Digiter) IntToDigitsN(v int, n int) (ds []int, rest int) {
+func (d *Digiter1) IntToDigitsN(v int, n int) (ds []int, rest int) {
 	var digit int
 	ds = make([]int, 0, n)
 	for i := 0; i < n; i++ {
@@ -62,13 +84,13 @@ func (d *Digiter) IntToDigitsN(v int, n int) (ds []int, rest int) {
 	return ds, rest
 }
 
-func (d *Digiter) DigitsToInt(digits []int, rest int) (int, error) {
+func (d *Digiter1) DigitsToInt(digits []int, rest int) (int, error) {
 	v := d.digitsToIntV1(digits, rest)
 	return v, nil
 	//return d.digitsToIntV2(digits, rest)
 }
 
-func (d *Digiter) digitsToIntV1(ds []int, rest int) int {
+func (d *Digiter1) digitsToIntV1(ds []int, rest int) int {
 	v := rest
 	for i := len(ds) - 1; i >= 0; i-- {
 		v = (v * d.base) + ds[i]
@@ -76,7 +98,7 @@ func (d *Digiter) digitsToIntV1(ds []int, rest int) int {
 	return v
 }
 
-func (d *Digiter) digitsToIntV2(digits []int, rest int) (int, error) {
+func (d *Digiter1) digitsToIntV2(digits []int, rest int) (int, error) {
 	base := d.base
 	v := rest
 	for i := len(digits) - 1; i >= 0; i-- {

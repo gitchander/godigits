@@ -43,8 +43,9 @@ func CalcDigitsBal3(v int) []int {
 		min = -1 // digit min
 		max = +1 // digit max
 	)
+	rd := digits.MustNewRestDigiter(min, max)
 	ds := make([]int, 4)
-	digits.CalcDigits(v, min, max, ds)
+	digits.CalcDigits(rd, v, ds)
 	return ds
 }
 
@@ -53,7 +54,8 @@ func calcDigits(v int, ds []int) []int {
 		min = -1
 		max = +1
 	)
-	digits.CalcDigits(v, min, max, ds)
+	rd := digits.MustNewRestDigiter(min, max)
+	digits.CalcDigits(rd, v, ds)
 	return ds
 }
 

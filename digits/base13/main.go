@@ -124,7 +124,8 @@ func calcDigits(v int, ds []int) []int {
 		min = -1
 		max = +1
 	)
-	digits.CalcDigits(v, min, max, ds)
+	rd := digits.MustNewRestDigiter(min, max)
+	digits.CalcDigits(rd, v, ds)
 	return ds
 }
 
@@ -133,7 +134,8 @@ func numberToDigits(x int) []int {
 		min = -40
 		max = 40
 	)
-	ds, _ := digits.CalcDigitsN(x, min, max, 10)
+	rd := digits.MustNewRestDigiter(min, max)
+	ds, _ := digits.CalcDigitsN(rd, x, 10)
 	return ds
 }
 

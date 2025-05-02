@@ -25,43 +25,43 @@ func checkError(err error) {
 
 func testCalcDigits() {
 	var (
-		digiter      = digits.NewDigiter(0, 1)
+		digiter      = digits.MustNewDigiter1(0, 1)
 		digitWidth   = 1
 		digitsNumber = 64
 
-		// digiter      = digits.NewDigiter(0, 9)
+		// digiter      = digits.MustNewDigiter1(0, 9)
 		// digitWidth   = 1
 		// digitsNumber = 25
 
-		// digiter      = digits.NewDigiter(-1, 1)
+		// digiter      = digits.MustNewDigiter1(-1, 1)
 		// digitWidth   = 3
 		// digitsNumber = 41
 
-		// digiter      = digits.NewDigiter(5, 8)
+		// digiter      = digits.MustNewDigiter1(5, 8)
 		// digitWidth   = 1
 		// digitsNumber = 40
 
-		// digiter      = digits.NewDigiter(-4, 5)
+		// digiter      = digits.MustNewDigiter1(-4, 5)
 		// digitWidth   = 3
 		// digitsNumber = 21
 
-		// digiter      = digits.NewDigiter(-40, 41)
+		// digiter      = digits.MustNewDigiter1(-40, 41)
 		// digitWidth   = 4
 		// digitsNumber = 11
 
-		// digiter      = digits.NewDigiter(4, 13)
+		// digiter      = digits.MustNewDigiter1(4, 13)
 		// digitWidth   = 3
 		// digitsNumber = 25
 
-		// digiter      = digits.NewDigiter(17, 36)
+		// digiter      = digits.MustNewDigiter1(17, 36)
 		// digitWidth   = 3
 		// digitsNumber = 20
 
-		// digiter      = digits.NewDigiter(-36, -17)
+		// digiter      = digits.MustNewDigiter1(-36, -17)
 		// digitWidth   = 4
 		// digitsNumber = 20
 
-		// digiter      = digits.NewDigiter(-1, +1)
+		// digiter      = digits.MustNewDigiter1(-1, +1)
 		// digitWidth   = 3
 		// digitsNumber = 43
 	)
@@ -83,7 +83,7 @@ func testCalcDigitsN() {
 	const (
 		digitWidth = 3
 	)
-	digiter := digits.NewDigiter(0, 9)
+	digiter := digits.MustNewDigiter1(0, 9)
 	x := 123404534
 	ds, rest := digiter.IntToDigitsN(x, 10)
 	fmt.Println(x, rest, formatDigits(ds, digitWidth))
@@ -93,7 +93,7 @@ func testDigits() {
 	const (
 		digitWidth = 3
 	)
-	digiter := digits.NewDigiter(-1, +1)
+	digiter := digits.MustNewDigiter1(-1, +1)
 	ds := make([]int, 10)
 	for x := 0; x < 100; x++ {
 		rest := digiter.IntToDigits(x, ds)
@@ -122,23 +122,23 @@ func frame(s string) string {
 func testCalcDigits2() {
 
 	var (
-		// digiter      = digits.NewDigiter(0, 9)
+		// digiter      = digits.MustNewDigiter1(0, 9)
 		// digitWidth   = 3
 		// digitsNumber = 21
 
-		// digiter      = digits.NewDigiter(-1, +1)
+		// digiter      = digits.MustNewDigiter1(-1, +1)
 		// digitWidth   = 3
 		// digitsNumber = 41
 
-		// digiter      = digits.NewDigiter(50, 108)
+		// digiter      = digits.MustNewDigiter1(50, 108)
 		// digitWidth   = 3
 		// digitsNumber = 40
 
-		// digiter      = digits.NewDigiter(-13, -9)
+		// digiter      = digits.MustNewDigiter1(-13, -9)
 		// digitWidth   = 4
 		// digitsNumber = 30
 
-		digiter      = digits.NewDigiter(2, 2)
+		digiter      = digits.MustNewDigiter1(2, 2)
 		digitWidth   = 3
 		digitsNumber = 30
 	)
@@ -172,9 +172,11 @@ func testRestDigit() {
 		//dmin, dmax = 7, 9
 	)
 
+	rd := digits.MustNewRestDigiter(dmin, dmax)
+
 	as := makeLimitInts(10)
 	for _, a := range as {
-		rest, digit := digits.RestDigit(a, dmin, dmax)
+		rest, digit := rd.RestDigit(a)
 		fmt.Printf("%20d %20d %3d\n", a, rest, digit)
 	}
 }

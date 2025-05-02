@@ -22,10 +22,11 @@ func calcTrits(x int, n int) []int {
 		min = -1 // digit min
 		max = +1 // digit max
 	)
+	rd := digits.MustNewRestDigiter(min, max)
 	trits := make([]int, n)
 	var trit int
 	for i := range trits {
-		x, trit = digits.RestDigit(x, min, max)
+		x, trit = rd.RestDigit(x)
 		trits[i] = trit
 	}
 	return trits

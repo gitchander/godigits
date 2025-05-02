@@ -5,6 +5,35 @@ import (
 	"math"
 )
 
+type RestDigiter interface {
+	RestDigit(x int) (rest, digit int)
+}
+
+func NewRestDigiter(min, max int) (RestDigiter, error) {
+	rd, err := NewDigiter2(min, max)
+	return rd, err
+}
+
+func MustNewRestDigiter(min, max int) RestDigiter {
+	rd, err := NewRestDigiter(min, max)
+	if err != nil {
+		panic(err)
+	}
+	return rd
+}
+
+//------------------------------------------------------------------------------
+
+func checkMinMax(min, max int) error {
+	if min > 0 {
+		return fmt.Errorf("Invalid interval (%d,%d): min > 0", min, max)
+	}
+	if max < 0 {
+		return fmt.Errorf("Invalid interval (%d,%d): max < 0", min, max)
+	}
+	return nil
+}
+
 // RestDigit
 // a <= b
 
@@ -16,11 +45,39 @@ import (
 // base = max - min + 1
 // x = rest * base + digit
 
-func calcRestDigit1(x int, min, max int) (rest, digit int) {
+//------------------------------------------------------------------------------
 
-	checkBaseRange(min, max)
+type restDigiter1 struct {
+	min, max int
+	base     int
+}
 
-	base := max - min + 1
+var _ RestDigiter = &restDigiter1{}
+
+func newRestDigiter1(min, max int) (*restDigiter1, error) {
+
+	err := checkMinMax(min, max)
+	if err != nil {
+		return nil, err
+	}
+
+	rd := &restDigiter1{
+		min: min,
+		max: max,
+
+		base: max - min + 1,
+	}
+	return rd, nil
+}
+
+func (p *restDigiter1) RestDigit(x int) (rest, digit int) {
+
+	var (
+		min = p.min
+		max = p.max
+
+		base = p.base
+	)
 
 	var q, r int
 
@@ -39,8 +96,6 @@ func calcRestDigit1(x int, min, max int) (rest, digit int) {
 }
 
 func calcRestDigit1_mod(x int, min, max int) (rest, digit int) {
-
-	checkBaseRange(min, max)
 
 	base := max - min + 1
 
@@ -70,8 +125,6 @@ func calcRestDigit1_mod(x int, min, max int) (rest, digit int) {
 
 func calcRestDigit2(x int, min, max int) (rest, digit int) {
 
-	checkBaseRange(min, max)
-
 	base := max - min + 1
 
 	rest, digit = quoRem(x, base)
@@ -94,11 +147,39 @@ func calcRestDigit2(x int, min, max int) (rest, digit int) {
 	return
 }
 
-func calcRestDigit3(x int, min, max int) (rest, digit int) {
+//------------------------------------------------------------------------------
 
-	checkBaseRange(min, max)
+type restDigiter3 struct {
+	min, max int
+	base     int
+}
 
-	base := max - min + 1
+var _ RestDigiter = &restDigiter3{}
+
+func newRestDigiter3(min, max int) (*restDigiter3, error) {
+
+	err := checkMinMax(min, max)
+	if err != nil {
+		return nil, err
+	}
+
+	rd := &restDigiter3{
+		min: min,
+		max: max,
+
+		base: max - min + 1,
+	}
+	return rd, nil
+}
+
+func (p *restDigiter3) RestDigit(x int) (rest, digit int) {
+
+	var (
+		min = p.min
+		max = p.max
+
+		base = p.base
+	)
 
 	rest, digit = quoRem(x, base)
 
@@ -114,17 +195,4 @@ func calcRestDigit3(x int, min, max int) (rest, digit int) {
 	}
 
 	return
-}
-
-func RestDigit(x int, min, max int) (rest, digit int) {
-	//return calcRestDigit1(x, min, max)
-	//return calcRestDigit1_mod(x, min, max)
-	//return calcRestDigit2(x, min, max)
-	return calcRestDigit3(x, min, max)
-}
-
-func checkBaseRange(min, max int) {
-	if min > max {
-		panic(fmt.Errorf("invalid base range [%d..%d]", min, max))
-	}
 }

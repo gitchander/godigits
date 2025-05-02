@@ -156,7 +156,9 @@ func (d DigitV4) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 		// circleDy = 5.0
 	)
 
-	bus, _ := digits.CalcDigitsN(d.Value, -3, 3, 10)
+	rd := digits.MustNewRestDigiter(-3, +3)
+
+	bus, _ := digits.CalcDigitsN(rd, d.Value, 10)
 	if false {
 		const nm = 2
 		for len(bus) < nm {

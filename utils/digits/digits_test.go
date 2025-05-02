@@ -9,7 +9,7 @@ import (
 )
 
 func testSample(a int, min, max int, dn int) error {
-	d := NewDigiter(min, max)
+	d := MustNewDigiter1(min, max)
 	digits := make([]int, dn)
 	rest := d.IntToDigits(a, digits)
 	b, err := d.DigitsToInt(digits, rest)
@@ -47,6 +47,10 @@ func TestRestDigitTri(t *testing.T) {
 		min = -1
 		max = +1
 	)
+	rd, err := NewRestDigiter(min, max)
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	type sampleTypes struct {
 		value       int
@@ -94,7 +98,7 @@ func TestRestDigitTri(t *testing.T) {
 	}
 
 	for _, sample := range samples {
-		rest, digit := RestDigit(sample.value, min, max)
+		rest, digit := rd.RestDigit(sample.value)
 		checkHaveWant(t, "rest", rest, sample.rest)
 		checkHaveWant(t, "digit", digit, sample.digit)
 	}
@@ -103,8 +107,8 @@ func TestRestDigitTri(t *testing.T) {
 func TestRestDigitRand(t *testing.T) {
 	r := randNow()
 	randBase := func() (min, max int) {
-		min = random.RandIntMinMax(r, -100, 100+1)
-		max = random.RandIntMinMax(r, -100, 100+1)
+		min = random.RandIntMinMax(r, -100, 0+1)
+		max = random.RandIntMinMax(r, 0, +100+1)
 		if min > max {
 			min, max = max, min
 		}
@@ -131,8 +135,12 @@ func TestRestDigitRand(t *testing.T) {
 			value    = randValue()
 			min, max = randBase() // rand base
 		)
+		rd, err := NewRestDigiter(min, max)
+		if err != nil {
+			t.Fatal(err)
+		}
 		var (
-			haveRest, haveDigit = RestDigit(value, min, max)
+			haveRest, haveDigit = rd.RestDigit(value)
 			wantRest, wantDigit = wantRestDigit(value, min, max)
 		)
 		checkHaveWant(t, "rest", haveRest, wantRest)

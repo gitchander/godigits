@@ -96,8 +96,10 @@ func (d Digit1) DrawDigit(c *gg.Context, x, y float64, height float64, digit int
 			},
 		}
 
+		rd := digits.MustNewRestDigiter(-1, +1)
+
 		bs := make([]int, len(nodes))
-		digits.CalcDigits(digit, -1, 1, bs)
+		digits.CalcDigits(rd, digit, bs)
 
 		var (
 			//xd float64 = 0.5

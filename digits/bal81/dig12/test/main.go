@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"image"
 	"log"
 
@@ -9,8 +8,8 @@ import (
 	"github.com/golang/freetype/truetype"
 	"golang.org/x/image/font/gofont/goregular"
 
+	"github.com/gitchander/godigits/dgdr"
 	"github.com/gitchander/godigits/digits/bal81/dig12"
-	"github.com/gitchander/godigits/geom"
 )
 
 func main() {
@@ -25,14 +24,10 @@ func makeDigit2() {
 	)
 	digitSize := image.Pt(sizeX, sizeY)
 
-	// dA := 30.0
-	// d := dig12.Digit1{
-	// 	A: dA,
-	// 	B: dA * 0.2,
-	// 	C: dA * 0.2,
-	// }.DigitDrawer()
-
-	d := dig12.Digit2{}
+	var (
+		//d = dig12.MakeDigit1_p1()
+		d = dig12.Digit2{}
+	)
 
 	//digits := []int{40, 40}
 	//digits := []int{-3, -2, -1, 0, 1, 2, 3}
@@ -55,7 +50,7 @@ func makeDigit2() {
 	err := setFont(c, fontSize)
 	checkError(err)
 
-	drawMatrix(c, d, nX, nY, digitSize, digits)
+	dgdr.DrawMatrixDDB(c, d, nX, nY, digitSize, digits)
 
 	err = c.SavePNG("digit2_matrix.png")
 	checkError(err)
@@ -82,41 +77,6 @@ func intervalInts(min, max int) []int {
 		a[i] = min + i
 	}
 	return a
-}
-
-func drawBounds(c *gg.Context, b geom.Bounds) {
-	c.DrawRectangle(b.Min.X, b.Min.Y, b.Max.X, b.Max.Y)
-}
-
-func drawMatrix(c *gg.Context, d dig12.DigitDrawer, nX, nY int,
-	digitSize image.Point, digits []int) {
-	for y := 0; y < nY; y++ {
-		for x := 0; x < nX; x++ {
-			b := geom.MakeBounds(
-				float64((x+0)*digitSize.X), float64((y+0)*digitSize.Y),
-				float64((x+1)*digitSize.X), float64((y+1)*digitSize.Y),
-			)
-			if true {
-				if ((x + y) % 2) == 0 {
-					c.SetRGB(0.7, 0.9, 1)
-				} else {
-					c.SetRGB(1, 1, 1)
-				}
-				drawBounds(c, b)
-				c.Fill()
-			}
-			if len(digits) > 0 {
-				digit := digits[0]
-				digits = digits[1:]
-
-				c.SetRGB(0, 0, 0)
-				c.DrawString(fmt.Sprintf("%d", digit), b.Min.X, b.Min.Y+c.FontHeight())
-
-				c.SetRGB(0, 0, 0)
-				d.DrawDigit(c, b, digit)
-			}
-		}
-	}
 }
 
 func setFont(c *gg.Context, fontSize float64) error {

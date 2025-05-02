@@ -1,25 +1,25 @@
 package digits
 
-func CalcDigits(v int, min, max int, ds []int) (rest int) {
+func CalcDigits(rd RestDigiter, v int, ds []int) (rest int) {
+	rest = v
 	var digit int
 	for i := range ds {
-		v, digit = RestDigit(v, min, max)
+		rest, digit = rd.RestDigit(rest)
 		ds[i] = digit
 	}
-	rest = v
 	return rest
 }
 
-func CalcDigitsN(v int, min, max int, n int) (ds []int, rest int) {
+func CalcDigitsN(rd RestDigiter, v int, n int) (ds []int, rest int) {
+	rest = v
 	var digit int
 	ds = make([]int, 0, n)
 	for i := 0; i < n; i++ {
-		if (v == 0) && (len(ds) > 0) {
+		if (rest == 0) && (len(ds) > 0) {
 			break
 		}
-		v, digit = RestDigit(v, min, max)
+		rest, digit = rd.RestDigit(rest)
 		ds = append(ds, digit)
 	}
-	rest = v
 	return ds, rest
 }

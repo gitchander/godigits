@@ -173,3 +173,5 @@ func drawMatrix(c *gg.Context, dd DigitDrawer, xn, yn int, x0, y0 float64,
 		}
 	}
 }
+
+//------------------------------------------------------------------------------

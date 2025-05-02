@@ -130,9 +130,10 @@ func minFloat64(a, b float64) float64 {
 func numberToDigits(x int) []int {
 	const (
 		min = -4
-		max = 4
+		max = +4
 	)
-	ds, _ := digits.CalcDigitsN(x, min, max, 10)
+	rd := digits.MustNewRestDigiter(min, max)
+	ds, _ := digits.CalcDigitsN(rd, x, 10)
 	return ds
 }
 

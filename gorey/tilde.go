@@ -16,7 +16,7 @@ var _ Object = Tilde{}
 
 func (Tilde) IsObject() {}
 
-func (v Tilde) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Tilde) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const lineWidth = 0.05
 
@@ -51,7 +51,7 @@ func (v Tilde) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 	// 	// drawContentArea(c, x1, y1, width)
 	// }
 
-	cr := geom.Rectangle2f{}
+	cr := geom.Bounds{}
 
 	if v.Content != nil {
 		v.Content.Draw(c, cr, level+1)

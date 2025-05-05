@@ -46,7 +46,7 @@ func makeObjectImage() error {
 	}
 	defer c.Destroy()
 
-	r := geom.Rectangle2f{
+	r := geom.Bounds{
 		Max: geom.Pt2f(float64(size.X), float64(size.Y)),
 	}
 
@@ -106,7 +106,7 @@ func makeDigitImage() error {
 	}
 	defer c.Destroy()
 
-	r := geom.Rectangle2f{
+	r := geom.Bounds{
 		Max: geom.Pt2f(float64(size.X), float64(size.Y)),
 	}
 
@@ -175,7 +175,7 @@ func makeDigitsImage() error {
 
 	var o gorey.Object
 
-	rt := geom.Rectangle2f{
+	rt := geom.Bounds{
 		Max: geom.Pt2f(float64(ds.X), float64(ds.Y)),
 	}
 
@@ -287,7 +287,7 @@ func makeDigitsImageMatrix() error {
 		//intNexter IntNexter = RandomIntNexter()
 	)
 
-	rt := geom.Rectangle2f{
+	rt := geom.Bounds{
 		Max: geom.Pt2f(float64(ds.X), float64(ds.Y)),
 	}
 
@@ -318,6 +318,6 @@ func makeDigitsImageMatrix() error {
 	return surface.WriteToPNG(filename)
 }
 
-func cairoRectangle(c *cairo.Canvas, r geom.Rectangle2f) {
+func cairoRectangle(c *cairo.Canvas, r geom.Bounds) {
 	c.Rectangle(r.Min.X, r.Min.Y, r.Dx(), r.Dy())
 }

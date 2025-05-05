@@ -15,7 +15,7 @@ var _ Object = Heart{}
 
 func (Heart) IsObject() {}
 
-func (v Heart) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Heart) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const lineWidthRel = 5
 

@@ -28,7 +28,7 @@ func drawLemniscateV1(c *cairo.Canvas, center geom.Point2f, radius float64) {
 	for i := 0; i <= n; i++ {
 		r, ok := lemniscate(radius, angle)
 		if ok {
-			p := geom.PolarToCartesian(geom.ShPolar(r, angle))
+			p := geom.PolarToCartesian(geom.MakePolar(r, angle))
 			p = center.Add(p)
 			c.LineTo(p.X, p.Y)
 		}
@@ -59,7 +59,7 @@ func drawLemniscateV2(c *cairo.Canvas, center geom.Point2f, radius float64) {
 		for i := 0; i < n; i++ {
 			theta := vr.IndexToValue(i)
 			r, _ := lemniscate(radius, theta)
-			p := geom.PolarToCartesian(geom.ShPolar(r, theta))
+			p := geom.PolarToCartesian(geom.MakePolar(r, theta))
 			p = p.Add(center)
 
 			if i == 0 {
@@ -102,7 +102,7 @@ func drawLemniscateV3(c *cairo.Canvas, center geom.Point2f, radius float64) {
 
 		r, _ := lemniscate(radius, angle)
 
-		p := geom.PolarToCartesian(geom.ShPolar(r, angle))
+		p := geom.PolarToCartesian(geom.MakePolar(r, angle))
 		as = append(as, p)
 
 		angle += deltaAngle
@@ -183,7 +183,7 @@ func drawLemniscateV3(c *cairo.Canvas, center geom.Point2f, radius float64) {
 	}
 }
 
-func drawLemniscate(c *cairo.Canvas, r geom.Rectangle2f) {
+func drawLemniscate(c *cairo.Canvas, r Bounds) {
 
 	const lineWidthRel = 5.0
 

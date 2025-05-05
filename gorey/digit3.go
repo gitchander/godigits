@@ -17,13 +17,13 @@ var _ Object = DigitV3{}
 
 func (DigitV3) IsObject() {}
 
-func (d DigitV3) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (d DigitV3) Draw(c *cairo.Canvas, r Bounds, level int) {
 	//d.draw1(c, r, level)
 	// d.draw2(c, r, level)
 	d.draw3(c, r, level)
 }
 
-func (d DigitV3) draw1(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (d DigitV3) draw1(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		lineWidthRel = 0.5
@@ -283,7 +283,7 @@ func (d DigitV3) draw1(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 
 //------------------------------------------------------------------------------
 
-func (d DigitV3) draw2(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (d DigitV3) draw2(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		lineWidthRel = 0.5
@@ -531,7 +531,7 @@ func (d DigitV3) draw2(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 
 //------------------------------------------------------------------------------
 
-func (d DigitV3) draw3(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (d DigitV3) draw3(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		lineWidthRel = 0.5

@@ -16,7 +16,7 @@ var _ Object = Rectangle{}
 
 func (Rectangle) IsObject() {}
 
-func (v Rectangle) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Rectangle) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		lineWidthRel = 5

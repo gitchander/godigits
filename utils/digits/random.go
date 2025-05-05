@@ -15,41 +15,26 @@ func randBySeed(seed int64) *rand.Rand {
 }
 
 func randBool(r *rand.Rand) bool {
-	return (r.Int() & 1) == 1
+	return random.RandBool(r)
 }
 
-func randBaseInt(r *rand.Rand) int {
+type testBase struct {
+	Min int
+	Max int
+}
+
+func randomBaseV1(r *rand.Rand) testBase {
 	var (
-		k    = 10
-		mask = uint32((1 << k) - 1)
+		min = 0
+		max = 20
 	)
-	x := (r.Uint32() & mask) >> r.Intn(k)
-	a := int(x)
-	if randBool(r) {
-		a = -a
+	b := testBase{
+		Min: -random.RandIntIn(r, min, max),
+		Max: +random.RandIntIn(r, min, max),
 	}
-	return a
+	return b
 }
 
-func randomBaseMinMaxV1(r *rand.Rand) (min, max int) {
-	var a, b int
-	for a == b {
-		a = randBaseInt(r)
-		b = randBaseInt(r)
-	}
-	if a > b {
-		a, b = b, a
-	}
-	return a, b
-}
-
-func randomBaseMinMaxV2(r *rand.Rand) (min, max int) {
-	a := -random.RandIntMinMax(r, 0, 20)
-	b := random.RandIntMinMax(r, 0, 20)
-	return a, b
-}
-
-func randomBaseMinMax(r *rand.Rand) (min, max int) {
-	//return randomBaseMinMaxV1(r)
-	return randomBaseMinMaxV2(r)
+func randomBase(r *rand.Rand) testBase {
+	return randomBaseV1(r)
 }

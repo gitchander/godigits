@@ -44,7 +44,7 @@ func main() {
 	}
 
 	{
-		ds := randInts(100, 0, 10000)
+		ds := randIntsIn(100, 0, 10000)
 		filename := filepath.Join(dirName, "digits_matrix.png")
 		err := dgdr.MakeDigitsImageMatrix(filename, dd, 10, 6, 128, ds)
 		checkError(err)
@@ -200,7 +200,7 @@ func serialInts(n int) []int {
 	return a
 }
 
-func randInts(n int, min, max int) []int {
+func randIntsIn(n int, min, max int) []int {
 	r := random.NewRandNow()
-	return random.RandInts(r, n, min, max)
+	return random.RandIntsIn(r, n, min, max)
 }

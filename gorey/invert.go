@@ -14,7 +14,7 @@ var _ Object = Invert{}
 
 func (Invert) IsObject() {}
 
-func (v Invert) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Invert) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		lineWidthFactor = 0.05

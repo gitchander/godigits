@@ -102,7 +102,7 @@ func (v Aspector) Draw(c *cairo.Canvas, b Bounds, level int) {
 	v.Content.Draw(c, cr, level+1)
 }
 
-func subRectByAspectRatio(b Bounds, aspectRatio float64) geom.Rectangle2f {
+func subRectByAspectRatio(b Bounds, aspectRatio float64) Bounds {
 
 	var (
 		dx = b.Dx()
@@ -130,7 +130,7 @@ func subRectByAspectRatio(b Bounds, aspectRatio float64) geom.Rectangle2f {
 
 	center := b.Center()
 	f := geom.MakeFrame2(dx, dy).DivScalar(2)
-	r1 := geom.PointToRect2f(center).Grow(f)
+	r1 := geom.Point2fToBounds(center).Grow(f)
 
 	return r1
 }

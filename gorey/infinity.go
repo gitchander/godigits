@@ -12,7 +12,7 @@ var _ Object = Infinity{}
 
 func (Infinity) IsObject() {}
 
-func (v Infinity) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Infinity) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	var (
 		marginRel = geom.MakeFrame1(5)

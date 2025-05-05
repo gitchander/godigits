@@ -15,7 +15,7 @@ var _ Object = Caret{}
 
 func (Caret) IsObject() {}
 
-func (v Caret) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Caret) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		signHeightFactor = 0.25

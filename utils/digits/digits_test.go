@@ -8,8 +8,8 @@ import (
 	"github.com/gitchander/godigits/utils/random"
 )
 
-func testSample(a int, min, max int, dn int) error {
-	d := MustNewDigiter1(min, max)
+func testSample(a int, tb testBase, dn int) error {
+	d := MustNewDigiter1(tb.Min, tb.Max)
 	digits := make([]int, dn)
 	rest := d.IntToDigits(a, digits)
 	b, err := d.DigitsToInt(digits, rest)
@@ -25,14 +25,12 @@ func testSample(a int, min, max int, dn int) error {
 func TestDigitsSamples(t *testing.T) {
 
 	samples := makeLimitInts(10)
+	r := random.NextRand()
 
-	r := randNow()
-	//r := randBySeed(0)
 	for i := 0; i < 100; i++ {
-		min, max := randomBaseMinMax(r)
-		// t.Log(min, max)
+		tb := randomBase(r)
 		for _, sample := range samples {
-			err := testSample(sample, min, max, 1)
+			err := testSample(sample, tb, 1)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -107,15 +105,15 @@ func TestRestDigitTri(t *testing.T) {
 func TestRestDigitRand(t *testing.T) {
 	r := randNow()
 	randBase := func() (min, max int) {
-		min = random.RandIntMinMax(r, -100, 0+1)
-		max = random.RandIntMinMax(r, 0, +100+1)
+		min = random.RandIntIn(r, -100, 0+1)
+		max = random.RandIntIn(r, 0, +100+1)
 		if min > max {
 			min, max = max, min
 		}
 		return min, max
 	}
 	randValue := func() int {
-		return random.RandIntMinMax(r, -1000, 1000+1)
+		return random.RandIntIn(r, -1000, 1000+1)
 	}
 	wantRestDigit := func(x int, min, max int) (rest, digit int) {
 		base := max - min + 1

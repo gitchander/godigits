@@ -1,7 +1,6 @@
 package digits
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -10,7 +9,7 @@ type RestDigiter interface {
 }
 
 func NewRestDigiter(min, max int) (RestDigiter, error) {
-	rd, err := NewDigiter2(min, max)
+	rd, err := NewRestDigiter2(min, max)
 	return rd, err
 }
 
@@ -23,16 +22,6 @@ func MustNewRestDigiter(min, max int) RestDigiter {
 }
 
 //------------------------------------------------------------------------------
-
-func checkMinMax(min, max int) error {
-	if min > 0 {
-		return fmt.Errorf("Invalid interval (%d,%d): min > 0", min, max)
-	}
-	if max < 0 {
-		return fmt.Errorf("Invalid interval (%d,%d): max < 0", min, max)
-	}
-	return nil
-}
 
 // RestDigit
 // a <= b
@@ -79,18 +68,13 @@ func (p *restDigiter1) RestDigit(x int) (rest, digit int) {
 		base = p.base
 	)
 
-	var q, r int
-
 	if x < min {
-		q, r = quoRem(x-max, base)
-		r += max
+		rest, digit = quoRem(x-max, base)
+		digit += max
 	} else {
-		q, r = quoRem(x-min, base)
-		r += min
+		rest, digit = quoRem(x-min, base)
+		digit += min
 	}
-
-	rest = q
-	digit = r
 
 	return
 }
@@ -99,26 +83,19 @@ func calcRestDigit1_mod(x int, min, max int) (rest, digit int) {
 
 	base := max - min + 1
 
-	var q, r int
-
 	switch {
 	case x < min:
-		dx := min - 1
-		q, r = quoRem(x-dx, base)
-		q--
-		r += dx + base
+		rest, digit = quoRem((x - (min - 1)), base)
+		rest--
+		digit += max
 	case x > max:
-		dx := max + 1
-		q, r = quoRem(x-dx, base)
-		q++
-		r += dx - base
+		rest, digit = quoRem((x - (max + 1)), base)
+		rest++
+		digit += min
 	default:
-		q = 0
-		r = x
+		rest = 0
+		digit = x
 	}
-
-	rest = q
-	digit = r
 
 	return
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/gitchander/godigits/geom"
 )
 
-type Bounds = geom.Rectangle2f
+type Bounds = geom.Bounds
 
 type Object interface {
 	IsObject()

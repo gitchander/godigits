@@ -432,8 +432,8 @@ func drawSegmentTrig(c *gg.Context, a, b Point2f, width float64) {
 		deltaA = b.Sub(a)
 		angleA = math.Atan2(deltaA.Y, deltaA.X)
 
-		a1 = a.Add(geom.PolarToCartesian(geom.ShPolar(radius, angleA+da)))
-		a2 = a.Add(geom.PolarToCartesian(geom.ShPolar(radius, angleA-da)))
+		a1 = a.Add(geom.PolarToCartesian(geom.MakePolar(radius, angleA+da)))
+		a2 = a.Add(geom.PolarToCartesian(geom.MakePolar(radius, angleA-da)))
 	)
 
 	// Point b:
@@ -442,8 +442,8 @@ func drawSegmentTrig(c *gg.Context, a, b Point2f, width float64) {
 		deltaB = a.Sub(b)
 		angleB = math.Atan2(deltaB.Y, deltaB.X)
 
-		b1 = b.Add(geom.PolarToCartesian(geom.ShPolar(radius, angleB+da)))
-		b2 = b.Add(geom.PolarToCartesian(geom.ShPolar(radius, angleB-da)))
+		b1 = b.Add(geom.PolarToCartesian(geom.MakePolar(radius, angleB+da)))
+		b2 = b.Add(geom.PolarToCartesian(geom.MakePolar(radius, angleB-da)))
 	)
 
 	c.MoveTo(a.X, a.Y)

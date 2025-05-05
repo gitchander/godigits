@@ -79,7 +79,7 @@ func makeDigitsRandom() {
 	r := random.NewRandNow()
 	ds := make([]int, 12)
 	for i := range ds {
-		ds[i] = random.RandIntMinMax(r, -40, 41)
+		ds[i] = random.RandIntIn(r, (-40 + 0), (+40 + 1))
 	}
 	//intsSerial(ds, -40, 1)
 
@@ -109,7 +109,7 @@ type sample struct {
 
 func makeSample(se sample) error {
 
-	ds := utils.MakeInts(-13, 14, 1)
+	ds := utils.MakeInts(-13, +13+1, 1)
 	filename := filepath.Join(se.dirName, ("digits" + se.fileSuffix + ".png"))
 	err := dgdr.MakeDigitsImageMatrix(filename, se.dd, 9, 3, se.digitHeight, ds)
 	if err != nil {

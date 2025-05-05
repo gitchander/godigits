@@ -29,7 +29,7 @@ func DrawMatrixDDB(c *gg.Context, d DigitDrawerB, nX, nY int,
 			)
 			if true {
 				if ((x + y) % 2) == 0 {
-					c.SetRGB(0.7, 0.9, 1)
+					c.SetRGB(0.7, 0.9, 1.0)
 				} else {
 					c.SetRGB(1, 1, 1)
 				}

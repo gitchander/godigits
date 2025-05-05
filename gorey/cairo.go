@@ -12,7 +12,7 @@ import (
 
 const tau = 2.0 * math.Pi
 
-func cairoRectangle(c *cairo.Canvas, r geom.Rectangle2f) {
+func cairoRectangle(c *cairo.Canvas, r Bounds) {
 	c.Rectangle(r.Min.X, r.Min.Y, r.Dx(), r.Dy())
 }
 

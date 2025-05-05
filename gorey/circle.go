@@ -16,7 +16,7 @@ var _ Object = Circle{}
 
 func (Circle) IsObject() {}
 
-func (v Circle) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Circle) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		// Rel - Relative
@@ -52,7 +52,7 @@ func (v Circle) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 		radius = (r1w - lineWidthAbs) / 2
 		r2i    = (r1w/2 - lineWidthAbs) / math.Sqrt2
 
-		r2 = geom.PointToRect2f(center).Grow(geom.MakeFrame1(r2i))
+		r2 = geom.Point2fToBounds(center).Grow(geom.MakeFrame1(r2i))
 		r3 = r2.Shrink(paddingAbs)
 	)
 

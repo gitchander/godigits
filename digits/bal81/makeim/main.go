@@ -31,7 +31,7 @@ type sample struct {
 
 func makeSample(se sample) error {
 	ds := utils.MakeInts(-40, 41, 1)
-	filename := filepath.Join(se.dirName, ("digits" + se.fileSuffix + ".png"))
+	filename := filepath.Join(se.dirName, ("bal81" + se.fileSuffix + ".png"))
 	return dgdr.MakeDigitsImageMatrix(filename, se.dd, 9, 9, se.digitHeight, ds)
 }
 
@@ -49,61 +49,61 @@ func testGG() error {
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit1{},
-			fileSuffix:  "_v1_gg",
+			fileSuffix:  "_d1_gg",
 			digitHeight: 120,
 		},
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit2{},
-			fileSuffix:  "_v2_gg",
+			fileSuffix:  "_d2_gg",
 			digitHeight: 120,
 		},
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit3{},
-			fileSuffix:  "_v3_gg",
+			fileSuffix:  "_d3_gg",
 			digitHeight: digitHeight,
 		},
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit4{},
-			fileSuffix:  "_v4_gg",
+			fileSuffix:  "_d4_gg",
 			digitHeight: digitHeight,
 		},
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit5{},
-			fileSuffix:  "_v5_gg",
+			fileSuffix:  "_d5_gg",
 			digitHeight: 120,
 		},
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit6{},
-			fileSuffix:  "_v6_gg",
+			fileSuffix:  "_d6_gg",
 			digitHeight: 120,
 		},
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit7{},
-			fileSuffix:  "_v7_gg",
+			fileSuffix:  "_d7_gg",
 			digitHeight: digitHeight,
 		},
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit8{},
-			fileSuffix:  "_v8_gg",
+			fileSuffix:  "_d8_gg",
 			digitHeight: digitHeight,
 		},
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit9{},
-			fileSuffix:  "_v9_gg",
+			fileSuffix:  "_d9_gg",
 			digitHeight: 120,
 		},
 		{
 			dirName:     dirName,
 			dd:          bal81.Digit10{},
-			fileSuffix:  "_v10_gg",
+			fileSuffix:  "_d10_gg",
 			digitHeight: 120,
 		},
 	}
@@ -126,14 +126,14 @@ func testCairo() error {
 		{
 			dirName:     dirName,
 			dd:          bal81.CairoDigit1{},
-			fileSuffix:  "_v1_cairo",
+			fileSuffix:  "_d1_cairo",
 			digitHeight: 120,
 		},
 	}
 
 	for _, sample := range samples {
 		ds := utils.MakeInts(-40, 41, 1)
-		filename := filepath.Join(sample.dirName, ("digits" + sample.fileSuffix + ".png"))
+		filename := filepath.Join(sample.dirName, ("bal81" + sample.fileSuffix + ".png"))
 		err := dgdr.CairoMakeDigitsImageMatrix(filename, sample.dd, 9, 9, sample.digitHeight, ds)
 		if err != nil {
 			return err

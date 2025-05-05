@@ -14,7 +14,7 @@ var _ Object = HBox{}
 
 func (HBox) IsObject() {}
 
-func (v HBox) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v HBox) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	if len(v.Objects) == 0 {
 		return
@@ -46,7 +46,7 @@ func (v HBox) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 
 	for _, object := range v.Objects {
 
-		cr := geom.Rectangle2f{
+		cr := geom.Bounds{
 			Min: geom.Pt2f(x, y1),
 			Max: geom.Pt2f(x+objectWidth, y2),
 		}

@@ -16,7 +16,7 @@ var _ Object = Rhombus{}
 
 func (Rhombus) IsObject() {}
 
-func (v Rhombus) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Rhombus) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	var (
 		lineWidthRel = 5.0
@@ -48,7 +48,7 @@ func (v Rhombus) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 	var (
 		r2i = (r1w - 2*(lineWidthAbs*math.Sqrt2)) / 4
 
-		r2 = geom.PointToRect2f(center).Grow(geom.MakeFrame1(r2i))
+		r2 = geom.Point2fToBounds(center).Grow(geom.MakeFrame1(r2i))
 
 		r3 = r2.Shrink(paddingAbs)
 	)

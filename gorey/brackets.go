@@ -15,7 +15,7 @@ var _ Object = CurlyBrackets{}
 
 func (CurlyBrackets) IsObject() {}
 
-func (v CurlyBrackets) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v CurlyBrackets) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		lineWidthRelative = 0.05

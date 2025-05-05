@@ -16,7 +16,7 @@ var _ Object = RoundRect{}
 
 func (RoundRect) IsObject() {}
 
-func (v RoundRect) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v RoundRect) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	var (
 		lineWidthRel = 5.0

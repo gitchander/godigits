@@ -14,7 +14,7 @@ var _ Object = Greed{}
 
 func (Greed) IsObject() {}
 
-func (v Greed) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v Greed) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	var (
 		w = minFloat64(r.Dx(), r.Dy())
@@ -48,7 +48,7 @@ func (v Greed) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 		for xi, cell := range rowCells {
 
 			p := p0.Add(geom.Pt2f(float64(xi)*dx, float64(yi)*dy))
-			cr := geom.Rectangle2f{
+			cr := geom.Bounds{
 				Min: p,
 				Max: p.Add(cellSize),
 			}

@@ -15,7 +15,7 @@ type ICanvas struct {
 	cellSize geom.Point2f
 }
 
-func NewICanvas(c *cairo.Canvas, r geom.Rectangle2f, nx, ny int) *ICanvas {
+func NewICanvas(c *cairo.Canvas, r Bounds, nx, ny int) *ICanvas {
 	return &ICanvas{
 		c:  c,
 		p0: r.Min,

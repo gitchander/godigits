@@ -165,14 +165,14 @@ func testCalcDigits2() {
 func testRestDigit() {
 
 	var (
-		dmin, dmax = -1, 1
-		//dmin, dmax = 0, 1
-		//dmin, dmax = 0, 19
-		//dmin, dmax = -10, -4
-		//dmin, dmax = 7, 9
+		min, max = -1, 1
+		//min, max = 0, 1
+		//min, max = 0, 19
+		//min, max = -10, -4
+		//min, max = 7, 9
 	)
 
-	rd := digits.MustNewRestDigiter(dmin, dmax)
+	rd := digits.MustNewRestDigiter(min, max)
 
 	as := makeLimitInts(10)
 	for _, a := range as {

@@ -16,7 +16,7 @@ var _ Object = DigitV1{}
 
 func (DigitV1) IsObject() {}
 
-func (d DigitV1) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (d DigitV1) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		lineWidthRel = 0.5

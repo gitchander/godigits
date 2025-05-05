@@ -1,73 +1,35 @@
 package geom
 
 import (
-	"image"
 	"math"
 )
 
-// ρ - rho
+// Polar coordinate system
+// https://en.wikipedia.org/wiki/Polar_coordinate_system
 
-// φ - phi
-// θ - theta
-
-// type Polar struct {
-// 	r float64 // rho
-// 	t float64 // phi
-// }
+// Rho - r, ρ
+// Phi - φ, θ
 
 type Polar struct {
 	Rho float64
 	Phi float64
 }
 
-func _() {
-	image.Pt(0, 0)
-}
-
-// Pt is shorthand for Point{X, Y}.
-// Pr is shorthand for Polar{Rho, Phi}.
-// Pr, MakePolar, ShPolar
-// ShPolar is shorthand for Polar{Rho, Phi}.
-func ShPolar(r, φ float64) Polar {
+func MakePolar(rho, phi float64) Polar {
 	return Polar{
-		Rho: r,
-		Phi: φ,
+		Rho: rho,
+		Phi: phi,
 	}
 }
 
-func (p Polar) ToCartesian() Point2f {
-	return PolarToCartesian(p)
-}
-
-// https://en.wikipedia.org/wiki/Polar_coordinate_system
-
-// The radial coordinate is often denoted by r or ρ.
-// The angular coordinate by φ, θ, or t.
-
-// r and φ
-
-func polarToCartesian(r, φ float64) (x, y float64) {
-	sin, cos := math.Sincos(φ)
-	x = r * cos
-	y = r * sin
-	return
-}
-
-func cartesianToPolar(x, y float64) (r, φ float64) {
-	r = math.Hypot(x, y)
-	φ = math.Atan2(y, x)
-	return
-}
-
 func PolarToCartesian(p Polar) Point2f {
-	x, y := polarToCartesian(p.Rho, p.Phi)
-	return Pt2f(x, y)
+	sin, cos := math.Sincos(p.Phi)
+	return MakePoint2f(cos, sin).MulScalar(p.Rho)
 }
 
-func CartesianToPolar(a Point2f) Polar {
-	r, φ := cartesianToPolar(a.X, a.Y)
+func CartesianToPolar(c Point2f) Polar {
 	return Polar{
-		Rho: r,
-		Phi: φ,
+		Rho: math.Hypot(c.Y, c.X),
+		Phi: math.Atan2(c.Y, c.X),
 	}
 }

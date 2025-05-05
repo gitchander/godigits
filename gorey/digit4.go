@@ -18,7 +18,7 @@ var _ Object = DigitV4{}
 
 func (DigitV4) IsObject() {}
 
-func (d DigitV4) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (d DigitV4) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		usePoints = false

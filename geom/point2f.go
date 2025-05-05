@@ -9,6 +9,13 @@ type Point2f struct {
 	Y float64
 }
 
+func MakePoint2f(x, y float64) Point2f {
+	return Point2f{
+		X: x,
+		Y: y,
+	}
+}
+
 func Pt2f(x, y float64) Point2f {
 	return Point2f{
 		X: x,
@@ -63,10 +70,6 @@ func (a Point2f) InvertAxisY() Point2f {
 		X: a.X,
 		Y: -a.Y,
 	}
-}
-
-func (a Point2f) ToPolar() Polar {
-	return CartesianToPolar(a)
 }
 
 //------------------------------------------------------------------------------

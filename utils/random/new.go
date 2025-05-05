@@ -16,7 +16,3 @@ func NewRandTime(t time.Time) *Rand {
 func NewRandNow() *Rand {
 	return NewRandTime(time.Now())
 }
-
-func NewRandNext() *Rand {
-	return NewRandSeed(nextSeed())
-}

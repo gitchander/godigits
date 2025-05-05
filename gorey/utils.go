@@ -68,12 +68,12 @@ func cube(a float64) float64 {
 }
 
 // ------------------------------------------------------------------------------
-func vmin(r geom.Rectangle2f) float64 {
-	return minFloat64(r.Dx(), r.Dy()) / 100.0
+func vmin(b geom.Bounds) float64 {
+	return minFloat64(b.Dx(), b.Dy()) / 100.0
 }
 
-func vmax(r geom.Rectangle2f) float64 {
-	return maxFloat64(r.Dx(), r.Dy()) / 100.0
+func vmax(b geom.Bounds) float64 {
+	return maxFloat64(b.Dx(), b.Dy()) / 100.0
 }
 
 //------------------------------------------------------------------------------

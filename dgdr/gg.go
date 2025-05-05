@@ -87,7 +87,7 @@ func MakeDigitsImageMatrix(filename string, dd DigitDrawer, xn, yn int, digitHei
 	c := gg.NewContext(cw, ch)
 
 	fontSize := digitHeight * 0.08
-	err := setFont(c, fontSize)
+	err := SetFontSizeGG(c, fontSize)
 	if err != nil {
 		return err
 	}
@@ -121,7 +121,7 @@ type digitDecText struct {
 	x, y   float64
 }
 
-func setFont(c *gg.Context, fontSize float64) error {
+func SetFontSizeGG(c *gg.Context, fontSize float64) error {
 
 	font, err := truetype.Parse(goregular.TTF)
 	if err != nil {

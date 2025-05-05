@@ -13,7 +13,7 @@ func HexagoneVertexes(center geom.Point2f, radius float64) []geom.Point2f {
 	theta := -tau / 4
 	dt := tau / float64(len(ps))
 	for i := range ps {
-		p := center.Add(geom.PolarToCartesian(geom.ShPolar(radius, theta)))
+		p := center.Add(geom.PolarToCartesian(geom.MakePolar(radius, theta)))
 		ps[i] = p
 		theta += dt
 	}
@@ -76,8 +76,8 @@ func SegmentPolygone(a, b geom.Point2f, lineWidth float64, angle float64) []geom
 		deltaA = b.Sub(a)
 		angleA = math.Atan2(deltaA.Y, deltaA.X)
 
-		a1 = a.Add(geom.PolarToCartesian(geom.ShPolar(radius, angleA+da)))
-		a2 = a.Add(geom.PolarToCartesian(geom.ShPolar(radius, angleA-da)))
+		a1 = a.Add(geom.PolarToCartesian(geom.MakePolar(radius, angleA+da)))
+		a2 = a.Add(geom.PolarToCartesian(geom.MakePolar(radius, angleA-da)))
 	)
 
 	// Point b:
@@ -85,8 +85,8 @@ func SegmentPolygone(a, b geom.Point2f, lineWidth float64, angle float64) []geom
 		deltaB = a.Sub(b)
 		angleB = math.Atan2(deltaB.Y, deltaB.X)
 
-		b1 = b.Add(geom.PolarToCartesian(geom.ShPolar(radius, angleB+da)))
-		b2 = b.Add(geom.PolarToCartesian(geom.ShPolar(radius, angleB-da)))
+		b1 = b.Add(geom.PolarToCartesian(geom.MakePolar(radius, angleB+da)))
+		b2 = b.Add(geom.PolarToCartesian(geom.MakePolar(radius, angleB-da)))
 	)
 
 	ps := []geom.Point2f{

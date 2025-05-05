@@ -18,7 +18,7 @@ var _ Object = RegularPolygon{}
 
 func (RegularPolygon) IsObject() {}
 
-func (v RegularPolygon) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
+func (v RegularPolygon) Draw(c *cairo.Canvas, r Bounds, level int) {
 
 	const (
 		lineWidthRel = 5.0
@@ -51,7 +51,7 @@ func (v RegularPolygon) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 		radius  = (r1w - lineWidthAbs) / 2
 		radiuIn = radius * math.Cos(deltaAngle/2)
 
-		r2 = geom.PointToRect2f(center).Grow(geom.MakeFrame1((radiuIn - (lineWidthAbs / 2)) / math.Sqrt2))
+		r2 = geom.Point2fToBounds(center).Grow(geom.MakeFrame1((radiuIn - (lineWidthAbs / 2)) / math.Sqrt2))
 
 		r3 = r2.Shrink(paddingAbs)
 	)
@@ -93,7 +93,7 @@ func (v RegularPolygon) Draw(c *cairo.Canvas, r geom.Rectangle2f, level int) {
 	n := v.N
 
 	getPoint := func(theta float64) geom.Point2f {
-		p := geom.PolarToCartesian(geom.ShPolar(radius, theta))
+		p := geom.PolarToCartesian(geom.MakePolar(radius, theta))
 		p = p.InvertAxisY()
 		return center.Add(p)
 	}

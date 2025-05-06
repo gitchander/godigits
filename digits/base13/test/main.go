@@ -10,6 +10,7 @@ import (
 	"golang.org/x/image/font/gofont/goregular"
 
 	"github.com/gitchander/godigits/dgdr"
+	"github.com/gitchander/godigits/digits/base13"
 	"github.com/gitchander/godigits/utils"
 	"github.com/gitchander/godigits/utils/digits"
 	"github.com/gitchander/godigits/utils/random"
@@ -17,7 +18,7 @@ import (
 
 func main() {
 	makeDigits()
-	makeNumbers()
+	//makeNumbers()
 	makeDigitsRandom()
 }
 
@@ -27,7 +28,7 @@ func makeDigits() {
 
 	var dd dgdr.DigitDrawer
 
-	dd = Digit1{}
+	dd = base13.Digit1{}
 
 	se := sample{
 		dirName:     dirName,
@@ -43,7 +44,7 @@ func makeDigits() {
 func makeNumbers() {
 	dirName := "images"
 	utils.MustMkdirIfNotExist(dirName)
-	dd := Digit2{}
+	dd := base13.Digit2{}
 	var ds []int
 	var (
 		trits = 4
@@ -73,8 +74,7 @@ func makeDigitsRandom() {
 	dirName := "images"
 	utils.MustMkdirIfNotExist(dirName)
 
-	dd := Digit2{}
-	//dd := Digit6{}
+	dd := base13.Digit6{}
 
 	r := random.NewRandNow()
 	ds := make([]int, 12)

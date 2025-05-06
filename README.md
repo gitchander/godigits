@@ -5,9 +5,21 @@ Chander's some experiments with numerical systems and characters of digits.
 
 ### Base3 balanced
 
-![base3bal_matrix_d1](images/base3bal_matrix_d1.png)
+#### Digit1
+![base3bal_d1](images/base3/base3bal_d1.png)
 ---
-![base3bal_matrix_d2](images/base3bal_matrix_d2.png)
+![base3bal_d1](images/base3/base3bal_d1_rand.png)
+---
+#### Digit2
+![base3bal_d1](images/base3/base3bal_d2.png)
+---
+![base3bal_d1](images/base3/base3bal_d2_rand.png)
+---
+#### Digit3
+![base3bal_d1](images/base3/base3bal_d3.png)
+---
+![base3bal_d1](images/base3/base3bal_d3_rand.png)
+---
 
 ### Base13 balanced
 

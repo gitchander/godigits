@@ -8,8 +8,6 @@ import (
 	"golang.org/x/image/font/gofont/goregular"
 )
 
-//------------------------------------------------------------------------------
-
 // Width - ширина (dx)
 // Height - висота (dy)
 
@@ -20,7 +18,8 @@ type DigitDrawer interface {
 	DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digit int)
 }
 
-func MakeDigitImage(filename string, dd DigitDrawer, digitHeight float64, digit int) error {
+func MakeDigitImage(filename string, dd DigitDrawer,
+	digitHeight float64, digit int) error {
 
 	var (
 		dx = dd.Width(digitHeight)
@@ -43,7 +42,8 @@ func MakeDigitImage(filename string, dd DigitDrawer, digitHeight float64, digit 
 	return c.SavePNG(filename)
 }
 
-func MakeDigitsImage(filename string, dd DigitDrawer, digitHeight float64, digits []int) error {
+func MakeDigitsImage(filename string, dd DigitDrawer,
+	digitHeight float64, digits []int) error {
 
 	var (
 		dx = dd.Width(digitHeight)
@@ -74,7 +74,8 @@ func MakeDigitsImage(filename string, dd DigitDrawer, digitHeight float64, digit
 	return c.SavePNG(filename)
 }
 
-func MakeDigitsImageMatrix(filename string, dd DigitDrawer, xn, yn int, digitHeight float64, digits []int) error {
+func MakeDigitsImageMatrix(filename string, dd DigitDrawer,
+	xn, yn int, digitHeight float64, digits []int) error {
 
 	var (
 		dx = dd.Width(digitHeight)
@@ -134,7 +135,8 @@ func SetFontSizeGG(c *gg.Context, fontSize float64) error {
 	return nil
 }
 
-func drawDigits(c *gg.Context, dd DigitDrawer, x0, y0 float64, dx, dy float64, digits []int) {
+func drawDigits(c *gg.Context, dd DigitDrawer, x0, y0 float64,
+	dx, dy float64, digits []int) {
 	for _, digit := range digits {
 		dd.DrawDigit(c, x0, y0, dy, digit)
 		x0 += dx
@@ -173,5 +175,3 @@ func drawMatrix(c *gg.Context, dd DigitDrawer, xn, yn int, x0, y0 float64,
 		}
 	}
 }
-
-//------------------------------------------------------------------------------

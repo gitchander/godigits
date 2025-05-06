@@ -13,7 +13,18 @@ type DigitDrawerB interface {
 	DrawDigit(c *gg.Context, b geom.Bounds, digit int)
 }
 
-func DrawMatrixDDB(c *gg.Context, d DigitDrawerB, nX, nY int,
+func DrawDigitsDDB(c *gg.Context, dd DigitDrawerB, dX, dY float64, ds []int) {
+	y := 0
+	for x, digit := range ds {
+		b := geom.MakeBounds(
+			float64(x+0)*dX, float64(y+0)*dY,
+			float64(x+1)*dX, float64(y+1)*dY,
+		)
+		dd.DrawDigit(c, b, digit)
+	}
+}
+
+func DrawMatrixDDB(c *gg.Context, dd DigitDrawerB, nX, nY int,
 	digitSize image.Point, digits []int) {
 
 	var (
@@ -44,7 +55,7 @@ func DrawMatrixDDB(c *gg.Context, d DigitDrawerB, nX, nY int,
 				c.DrawString(fmt.Sprintf("%d", digit), b.Min.X, b.Min.Y+c.FontHeight())
 
 				c.SetRGB(0, 0, 0)
-				d.DrawDigit(c, b, digit)
+				dd.DrawDigit(c, b, digit)
 			}
 		}
 	}

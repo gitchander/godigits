@@ -11,14 +11,26 @@ import (
 	"github.com/gitchander/godigits/dgdr"
 	"github.com/gitchander/godigits/digits/base3"
 	"github.com/gitchander/godigits/utils/digits"
+	"github.com/gitchander/godigits/utils/random"
 )
 
 func main() {
 	// testRestDigit()
 	// testDigits()
 
-	checkError(makeDigitMatrix("base3bal_matrix_d1.png", base3.DigitDrawer1{}))
-	checkError(makeDigitMatrix("base3bal_matrix_d2.png", base3.DigitDrawer2{}))
+	checkError(makeDigitMatrix("base3bal_d1.png", base3.DigitDrawer1{}))
+	checkError(makeDigitMatrix("base3bal_d2.png", base3.DigitDrawer2{}))
+	checkError(makeDigitMatrix("base3bal_d3.png", base3.DigitDrawer3{}))
+
+	checkError(makeRandDigits("base3bal_d1_rand.png", base3.DigitDrawer1{}))
+	checkError(makeRandDigits("base3bal_d2_rand.png", base3.DigitDrawer2{}))
+	checkError(makeRandDigits("base3bal_d3_rand.png", base3.DigitDrawer3{}))
+}
+
+func checkError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func testRestDigit() {
@@ -94,25 +106,65 @@ func testDigits() {
 	}
 }
 
-func checkError(err error) {
-	if err != nil {
-		log.Fatal(err)
+func makeRandDigits(filename string, d dgdr.DigitDrawerB) error {
+
+	var (
+		sizeX = 32
+		sizeY = base3.CalcSizeY(sizeX)
+	)
+
+	digitSize := image.Pt(sizeX, sizeY)
+
+	//digits := intervalInts((-1 + 0), (+1 + 1))
+	r := random.NextRand()
+	digits := make([]int, 20)
+	for i := range digits {
+		digits[i] = random.RandIntIn(r, -1, +1+1)
 	}
+
+	var (
+		nX = len(digits)
+		nY = 1
+
+		cX = digitSize.X * nX
+		cY = digitSize.Y * nY
+	)
+	c := gg.NewContext(cX, cY)
+
+	if true {
+		c.SetRGB(1, 1, 1)
+		c.Clear()
+	}
+
+	fontSize := float64(digitSize.Y) * 0.1
+	err := dgdr.SetFontSizeGG(c, fontSize)
+	if err != nil {
+		return err
+	}
+
+	var (
+		dXf = float64(digitSize.X)
+		dYf = float64(digitSize.Y)
+	)
+	dgdr.DrawDigitsDDB(c, d, dXf, dYf, digits)
+
+	return c.SavePNG(filename)
 }
 
 func makeDigitMatrix(filename string, d dgdr.DigitDrawerB) error {
 
 	var (
-		sizeX = 60
-		sizeY = sizeX * base3.AspectRatio
+		sizeX = 80
+		sizeY = base3.CalcSizeY(sizeX)
 	)
+
 	digitSize := image.Pt(sizeX, sizeY)
 
-	digits := intervalInts((-13 + 0), (+13 + 1))
+	digits := intervalInts((-1 + 0), (+1 + 1))
 
 	var (
-		nX = 9
-		nY = 3
+		nX = 3
+		nY = 1
 
 		cX = digitSize.X * nX
 		cY = digitSize.Y * nY

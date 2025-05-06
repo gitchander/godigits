@@ -1,4 +1,4 @@
-package base13
+package base27
 
 import (
 	"github.com/fogleman/gg"
@@ -232,12 +232,12 @@ func (d Digit2) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 		},
 	}
 
-	bs := make([]int, len(nodes))
-	calcDigits(digit, bs)
+	trits := make([]int, len(nodes))
+	calcTrits(digit, trits)
 
-	n := minInt(len(nodes), len(bs))
+	n := minInt(len(nodes), len(trits))
 	for i, node := range nodes[:n] {
-		switch bs[i] {
+		switch trits[i] {
 		case 1:
 			node.Positive.DrawGG(c)
 		case -1:
@@ -337,12 +337,12 @@ func (d Digit6) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 		},
 	}
 
-	bs := make([]int, len(nodes))
-	calcDigits(digit, bs)
+	trits := make([]int, len(nodes))
+	calcTrits(digit, trits)
 
-	n := minInt(len(nodes), len(bs))
+	n := minInt(len(nodes), len(trits))
 	for i, node := range nodes[:n] {
-		switch bs[i] {
+		switch trits[i] {
 		case 1:
 			node.Positive.DrawGG(c)
 		case -1:

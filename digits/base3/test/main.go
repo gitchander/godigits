@@ -154,7 +154,7 @@ func makeRandDigits(filename string, d dgdr.DigitDrawerB) error {
 func makeDigitMatrix(filename string, d dgdr.DigitDrawerB) error {
 
 	var (
-		sizeX = 80
+		sizeX = 50
 		sizeY = base3.CalcSizeY(sizeX)
 	)
 

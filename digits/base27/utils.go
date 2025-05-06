@@ -1,4 +1,4 @@
-package base13
+package base27
 
 import (
 	"github.com/gitchander/godigits/utils/digits"
@@ -18,12 +18,11 @@ func maxInt(a, b int) int {
 	return b
 }
 
-func calcDigits(v int, ds []int) []int {
+func calcTrits(v int, ds []int) {
 	const (
 		min = -1
 		max = +1
 	)
 	rd := digits.MustNewRestDigiter(min, max)
 	digits.CalcDigits(rd, v, ds)
-	return ds
 }

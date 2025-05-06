@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"image"
 	"log"
 	"path/filepath"
 
@@ -10,16 +11,20 @@ import (
 	"golang.org/x/image/font/gofont/goregular"
 
 	"github.com/gitchander/godigits/dgdr"
-	"github.com/gitchander/godigits/digits/base13"
+	"github.com/gitchander/godigits/digits/base27"
 	"github.com/gitchander/godigits/utils"
 	"github.com/gitchander/godigits/utils/digits"
 	"github.com/gitchander/godigits/utils/random"
 )
 
 func main() {
-	makeDigits()
+	//makeDigits()
 	//makeNumbers()
-	makeDigitsRandom()
+	//makeDigitsRandom()
+
+	checkError(makeDigitMatrix("base27bal_dd1.png", base27.DigitDrawer1{}))
+	checkError(makeDigitMatrix("base27bal_dd2.png", base27.DigitDrawer2{}))
+	checkError(makeDigitMatrix("base27bal_dd3.png", base27.DigitDrawer3{}))
 }
 
 func makeDigits() {
@@ -28,7 +33,7 @@ func makeDigits() {
 
 	var dd dgdr.DigitDrawer
 
-	dd = base13.Digit1{}
+	dd = base27.Digit1{}
 
 	se := sample{
 		dirName:     dirName,
@@ -44,7 +49,7 @@ func makeDigits() {
 func makeNumbers() {
 	dirName := "images"
 	utils.MustMkdirIfNotExist(dirName)
-	dd := base13.Digit2{}
+	dd := base27.Digit2{}
 	var ds []int
 	var (
 		trits = 4
@@ -74,7 +79,7 @@ func makeDigitsRandom() {
 	dirName := "images"
 	utils.MustMkdirIfNotExist(dirName)
 
-	dd := base13.Digit6{}
+	dd := base27.Digit1{}
 
 	r := random.NewRandNow()
 	ds := make([]int, 12)
@@ -176,4 +181,52 @@ func setFont(c *gg.Context, fontSize float64) error {
 	c.SetFontFace(face)
 
 	return nil
+}
+
+func makeDigitMatrix(filename string, d dgdr.DigitDrawerB) error {
+
+	var (
+		sizeX = 64
+		sizeY = base27.AspectRatio * sizeX
+	)
+
+	digitSize := image.Pt(sizeX, sizeY)
+
+	digits := intervalInts((-13 + 0), (+13 + 1))
+
+	var (
+		nX = 9
+		nY = 3
+
+		cX = digitSize.X * nX
+		cY = digitSize.Y * nY
+	)
+	c := gg.NewContext(cX, cY)
+
+	if true {
+		c.SetRGB(1, 1, 1)
+		c.Clear()
+	}
+
+	fontSize := float64(digitSize.Y) * 0.1
+	err := dgdr.SetFontSizeGG(c, fontSize)
+	if err != nil {
+		return err
+	}
+
+	dgdr.DrawMatrixDDB(c, d, nX, nY, digitSize, digits)
+
+	return c.SavePNG(filename)
+}
+
+func intervalInts(min, max int) []int {
+	n := max - min
+	if n < 0 {
+		n = 0
+	}
+	a := make([]int, n)
+	for i := 0; i < n; i++ {
+		a[i] = min + i
+	}
+	return a
 }

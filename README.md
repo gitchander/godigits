@@ -70,3 +70,7 @@ Chander's some experiments with numerical systems and characters of digits.
 ### Base25
 
 ![base25_d1](images/base25/base25_d1.png)
+
+### Base39
+
+![base39bal_ssd](images/ssd/base39bal_ssd.png)

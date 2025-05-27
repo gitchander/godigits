@@ -1,52 +1,21 @@
-package main
+package base25
 
 import (
-	"log"
-	"math/rand"
-	"path/filepath"
-	"time"
-
 	"github.com/fogleman/gg"
 
 	"github.com/gitchander/godigits/dgdr"
-	"github.com/gitchander/godigits/utils"
 )
 
-func main() {
+type Digit1 struct{}
 
-	dirName := "images"
-	utils.MustMkdirIfNotExist(dirName)
+var _ dgdr.DigitDrawer = Digit1{}
 
-	var dd dgdr.DigitDrawer
-
-	dd = Digit6{}
-
-	ds := serialInts(25)
-	filename := filepath.Join(dirName, "digits.png")
-	err := dgdr.MakeDigitsImageMatrix(filename, dd, 5, 5, 200, ds)
-	checkError(err)
-}
-
-func checkError(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-//------------------------------------------------------------------------------
-
-type Digit6 struct{}
-
-var _ dgdr.DigitDrawer = Digit6{}
-
-func (Digit6) Width(height float64) (width float64) {
+func (Digit1) Width(height float64) (width float64) {
 	width = height / 2
 	return width
 }
 
-func (Digit6) DrawDigit(c *gg.Context, x0, y0 float64, height float64, digit int) {
-
-	//func drawDigit(c *gg.Context, x0, y0 float64, size float64, digit int) error {
+func (Digit1) DrawDigit(c *gg.Context, x0, y0 float64, height float64, digit int) {
 
 	var (
 		nx = 8
@@ -124,27 +93,4 @@ func (Digit6) DrawDigit(c *gg.Context, x0, y0 float64, height float64, digit int
 		c.LineTo(x3-1, yp)
 	}
 	c.Stroke()
-}
-
-func quoRem(a, b int) (quo, rem int) {
-	quo = a / b
-	rem = a % b
-	return
-}
-
-func serialInts(n int) []int {
-	a := make([]int, n)
-	for i := range a {
-		a[i] = i
-	}
-	return a
-}
-
-func randInts(n int, min, max int) []int {
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	a := make([]int, n)
-	for i := range a {
-		a[i] = min + r.Intn(max-min)
-	}
-	return a
 }

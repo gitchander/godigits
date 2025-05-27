@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/gitchander/godigits/dgdr"
+	"github.com/gitchander/godigits/digits/base25"
 	"github.com/gitchander/godigits/utils"
 )
 
@@ -17,12 +18,11 @@ func main() {
 
 	var dd dgdr.DigitDrawer
 
-	dd = Digit1{}
-	//dd = DigitSasha{}
+	dd = base25.Digit1{}
 
-	ds := serialInts(16)
-	filename := filepath.Join(dirName, "digits.png")
-	err := dgdr.MakeDigitsImageMatrix(filename, dd, 4, 4, 200, ds)
+	ds := serialInts(25)
+	filename := filepath.Join(dirName, "base25_d1.png")
+	err := dgdr.MakeDigitsImageMatrix(filename, dd, 5, 5, 200, ds)
 	checkError(err)
 }
 
@@ -31,6 +31,8 @@ func checkError(err error) {
 		log.Fatal(err)
 	}
 }
+
+//------------------------------------------------------------------------------
 
 func serialInts(n int) []int {
 	a := make([]int, n)

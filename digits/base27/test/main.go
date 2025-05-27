@@ -22,9 +22,10 @@ func main() {
 	//makeNumbers()
 	//makeDigitsRandom()
 
-	checkError(makeDigitMatrix("base27bal_dd1.png", base27.DigitDrawer1{}))
-	checkError(makeDigitMatrix("base27bal_dd2.png", base27.DigitDrawer2{}))
-	checkError(makeDigitMatrix("base27bal_dd3.png", base27.DigitDrawer3{}))
+	checkError(makeDigitMatrix("base27bal_d1.png", base27.DigitDrawer1{}))
+	checkError(makeDigitMatrix("base27bal_d2.png", base27.DigitDrawer2{}))
+	checkError(makeDigitMatrix("base27bal_d3.png", base27.DigitDrawer3{}))
+	checkError(makeDigitMatrix("base27bal_d4.png", base27.DigitDrawer4{}))
 }
 
 func makeDigits() {

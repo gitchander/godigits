@@ -55,8 +55,8 @@ func (d Digit8Size4x4) DrawDigit(c *gg.Context, x, y float64, digitHeight float6
 		c.Stroke()
 	}
 
-	c.DrawCircle(2.5, 1.5, 0.2)
-	c.Fill()
+	// c.DrawCircle(2.5, 1.5, 0.2)
+	// c.Fill()
 
 	//--------------------------------------------------------------------------
 

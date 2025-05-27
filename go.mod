@@ -1,8 +1,8 @@
 module github.com/gitchander/godigits
 
-go 1.23.0
+go 1.24
 
-toolchain go1.23.7
+toolchain go1.24.3
 
 require (
 	github.com/fogleman/gg v1.3.0

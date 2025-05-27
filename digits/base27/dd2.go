@@ -54,8 +54,7 @@ func (DigitDrawer2) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 		c.LineTo(center.X, center.Y+(2*yA+yB+yB/2))
 	}
 
-	trits := make([]int, 3)
-	calcTrits(digit, trits)
+	trits := calcTritsBase27(digit)
 
 	var (
 		x1 = xB

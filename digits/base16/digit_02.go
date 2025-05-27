@@ -1,81 +1,19 @@
-package main
+package base16
 
 import (
-	"log"
-	"path/filepath"
-
 	"github.com/fogleman/gg"
 
 	"github.com/gitchander/godigits/dgdr"
-	"github.com/gitchander/godigits/utils"
 )
 
-func main() {
-	dirName := "images"
-	utils.MustMkdirIfNotExist(dirName)
+type Digit2 struct{}
 
-	samples := []Sample{
-		{
-			filename:  "digits_v3_4x4_0p.png",
-			dd:        Digit1{},
-			valueMin:  0,
-			valueMax:  16,
-			valueStep: 1,
-
-			matrixXn:    4,
-			matrixYn:    4,
-			digitHeight: 256,
-		},
-	}
-
-	for _, sample := range samples {
-
-		ds := utils.MakeInts(sample.valueMin, sample.valueMax, sample.valueStep)
-		filename := filepath.Join(dirName, sample.filename)
-
-		err := dgdr.MakeDigitsImageMatrix(filename, sample.dd,
-			sample.matrixXn, sample.matrixYn, sample.digitHeight, ds)
-		checkError(err)
-	}
-}
-
-func checkError(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-type Sample struct {
-	filename string
-
-	dd dgdr.DigitDrawer
-
-	valueMin  int
-	valueMax  int
-	valueStep int
-
-	matrixXn int
-	matrixYn int
-
-	digitHeight float64
-}
-
-func serialInts(n int) []int {
-	a := make([]int, n)
-	for i := range a {
-		a[i] = i
-	}
-	return a
-}
-
-type Digit1 struct{}
-
-func (Digit1) Width(height float64) (width float64) {
+func (Digit2) Width(height float64) (width float64) {
 	width = height / 2
 	return
 }
 
-func (d Digit1) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digit int) {
+func (d Digit2) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digit int) {
 
 	var (
 		nx = 8
@@ -260,23 +198,4 @@ func (d Digit1) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 		}
 		c.Fill()
 	}
-}
-
-func parseBools(s string) []bool {
-	var (
-		rs = []rune(s)
-		bs = make([]bool, 0, len(rs))
-	)
-	for _, r := range rs {
-		switch r {
-		case '0':
-			bs = append(bs, false)
-		case '1':
-			bs = append(bs, true)
-		case '-', '_': // skip
-		default:
-			panic("invalid bits")
-		}
-	}
-	return bs
 }

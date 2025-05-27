@@ -42,8 +42,7 @@ func (DigitDrawer3) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
 	c.Stroke()
 
-	trits := make([]int, 3)
-	calcTrits(digit, trits)
+	trits := calcTritsBase27(digit)
 
 	var (
 		radius = 8.0

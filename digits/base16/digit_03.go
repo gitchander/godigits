@@ -1,114 +1,19 @@
-package main
+package base16
 
 import (
-	"log"
-	"path/filepath"
-
 	"github.com/fogleman/gg"
 
 	"github.com/gitchander/godigits/dgdr"
-	"github.com/gitchander/godigits/utils"
 )
 
-func main() {
-	dirName := "images"
-	utils.MustMkdirIfNotExist(dirName)
+type Digit3 struct{}
 
-	samples := []Sample{
-		{
-			filename:  "digits_v3_4x4_0p.png",
-			dd:        Digit1{},
-			valueMin:  0,
-			valueMax:  16,
-			valueStep: 1,
-
-			matrixXn:    4,
-			matrixYn:    4,
-			digitHeight: 256,
-		},
-		{
-			filename:  "digits_v3_7x5_n0p.png",
-			dd:        Digit1{},
-			valueMin:  -17,
-			valueMax:  18,
-			valueStep: 1,
-
-			matrixXn:    7,
-			matrixYn:    5,
-			digitHeight: 200,
-		},
-		{
-			filename:  "digits_v3_9x5_n0p.png",
-			dd:        Digit1{},
-			valueMin:  -22,
-			valueMax:  23,
-			valueStep: 1,
-
-			matrixXn:    9,
-			matrixYn:    5,
-			digitHeight: 160,
-		},
-		{
-			filename:  "digits_v3_11x3_n0p.png",
-			dd:        Digit1{},
-			valueMin:  -16,
-			valueMax:  17,
-			valueStep: 1,
-
-			matrixXn:    11,
-			matrixYn:    3,
-			digitHeight: 128,
-		},
-	}
-
-	for _, sample := range samples {
-
-		ds := utils.MakeInts(sample.valueMin, sample.valueMax, sample.valueStep)
-		filename := filepath.Join(dirName, sample.filename)
-
-		err := dgdr.MakeDigitsImageMatrix(filename, sample.dd,
-			sample.matrixXn, sample.matrixYn, sample.digitHeight, ds)
-		checkError(err)
-	}
-}
-
-func checkError(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-type Sample struct {
-	filename string
-
-	dd dgdr.DigitDrawer
-
-	valueMin  int
-	valueMax  int
-	valueStep int
-
-	matrixXn int
-	matrixYn int
-
-	digitHeight float64
-}
-
-func serialInts(n int) []int {
-	a := make([]int, n)
-	for i := range a {
-		a[i] = i
-	}
-	return a
-}
-
-type Digit1 struct{}
-
-func (Digit1) Width(height float64) (width float64) {
+func (Digit3) Width(height float64) (width float64) {
 	width = height / 2
 	return
 }
 
-func (d Digit1) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digit int) {
+func (d Digit3) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digit int) {
 
 	var (
 		nx = 8
@@ -328,23 +233,4 @@ func (d Digit1) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 
 		c.Pop()
 	}
-}
-
-func parseBools(s string) []bool {
-	var (
-		rs = []rune(s)
-		bs = make([]bool, 0, len(rs))
-	)
-	for _, r := range rs {
-		switch r {
-		case '0':
-			bs = append(bs, false)
-		case '1':
-			bs = append(bs, true)
-		case '-', '_': // skip
-		default:
-			panic("invalid bits")
-		}
-	}
-	return bs
 }

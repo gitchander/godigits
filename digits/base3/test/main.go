@@ -117,7 +117,7 @@ func makeRandDigits(filename string, d dgdr.DigitDrawerB) error {
 
 	//digits := intervalInts((-1 + 0), (+1 + 1))
 	r := random.NextRand()
-	digits := make([]int, 20)
+	digits := make([]int, 10)
 	for i := range digits {
 		digits[i] = random.RandIntIn(r, -1, +1+1)
 	}

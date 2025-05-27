@@ -28,15 +28,19 @@ func (DigitDrawer1) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 	c.LineTo(50, 180)
 
 	d := digit
+	var (
+		drawAll = false
+		// drawAll = (d == 0)
+	)
 
 	// Positive
-	if (d == 0) || (d == +1) {
+	if drawAll || (d == +1) {
 		c.MoveTo(50, 20)
 		c.LineTo(10, 60)
 	}
 
 	// Negative
-	if (d == 0) || (d == -1) {
+	if drawAll || (d == -1) {
 		c.MoveTo(50, 180)
 		c.LineTo(90, 140)
 	}

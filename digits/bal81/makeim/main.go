@@ -31,7 +31,7 @@ type sample struct {
 
 func makeSample(se sample) error {
 	ds := utils.MakeInts(-40, 41, 1)
-	filename := filepath.Join(se.dirName, ("bal81" + se.fileSuffix + ".png"))
+	filename := filepath.Join(se.dirName, ("base81bal" + se.fileSuffix + ".png"))
 	return dgdr.MakeDigitsImageMatrix(filename, se.dd, 9, 9, se.digitHeight, ds)
 }
 
@@ -133,7 +133,7 @@ func testCairo() error {
 
 	for _, sample := range samples {
 		ds := utils.MakeInts(-40, 41, 1)
-		filename := filepath.Join(sample.dirName, ("bal81" + sample.fileSuffix + ".png"))
+		filename := filepath.Join(sample.dirName, ("base81bal" + sample.fileSuffix + ".png"))
 		err := dgdr.CairoMakeDigitsImageMatrix(filename, sample.dd, 9, 9, sample.digitHeight, ds)
 		if err != nil {
 			return err

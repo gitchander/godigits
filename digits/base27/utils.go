@@ -38,6 +38,8 @@ func calcTritsBase27(v int) []int {
 
 //------------------------------------------------------------------------------
 
+type Coord = geom.Point2f
+
 type geomDrawer struct {
 	c *gg.Context
 }
@@ -46,11 +48,15 @@ func newGeomDrawer(c *gg.Context) *geomDrawer {
 	return &geomDrawer{c: c}
 }
 
-func (d *geomDrawer) DrawLine(a, b geom.Point2f) {
+func (d *geomDrawer) DrawLine(a, b Coord) {
 	d.c.MoveTo(a.X, a.Y)
 	d.c.LineTo(b.X, b.Y)
 }
 
-func (d *geomDrawer) DrawLineTo(b geom.Point2f) {
+func (d *geomDrawer) DrawLineTo(b Coord) {
 	d.c.LineTo(b.X, b.Y)
+}
+
+func (d *geomDrawer) DrawCircle(center Coord, radius float64) {
+	d.c.DrawCircle(center.X, center.Y, radius)
 }

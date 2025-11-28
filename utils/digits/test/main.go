@@ -13,8 +13,8 @@ func main() {
 	//testCalcDigits()
 	//testCalcDigitsN()
 	//testDigits()
-	//testCalcDigits2()
-	testRestDigit()
+	testCalcDigits2()
+	//testRestDigit()
 }
 
 func checkError(err error) {
@@ -122,9 +122,9 @@ func frame(s string) string {
 func testCalcDigits2() {
 
 	var (
-		// digiter      = digits.MustNewDigiter1(0, 9)
-		// digitWidth   = 3
-		// digitsNumber = 21
+		digiter      = digits.MustNewDigiter1(0, 9)
+		digitWidth   = 3
+		digitsNumber = 21
 
 		// digiter      = digits.MustNewDigiter1(-1, +1)
 		// digitWidth   = 3
@@ -138,9 +138,9 @@ func testCalcDigits2() {
 		// digitWidth   = 4
 		// digitsNumber = 30
 
-		digiter      = digits.MustNewDigiter1(2, 2)
-		digitWidth   = 3
-		digitsNumber = 30
+		// digiter      = digits.MustNewDigiter1(2, 2)
+		// digitWidth   = 3
+		// digitsNumber = 30
 	)
 
 	ds := make([]int, digitsNumber)
@@ -165,11 +165,12 @@ func testCalcDigits2() {
 func testRestDigit() {
 
 	var (
-		min, max = -1, 1
+		//min, max = -1, 1
 		//min, max = 0, 1
 		//min, max = 0, 19
 		//min, max = -10, -4
 		//min, max = 7, 9
+		min, max = 0, 9
 	)
 
 	rd := digits.MustNewRestDigiter(min, max)

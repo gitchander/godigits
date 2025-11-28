@@ -8,9 +8,9 @@ import (
 	"github.com/gitchander/godigits/geom"
 )
 
-type DigitDrawer4 struct{}
+type DigitDrawer5 struct{}
 
-func (DigitDrawer4) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
+func (DigitDrawer5) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
 	b = geom.BoundsAspect(b, AspectRatio)
 	v := b.Vmin()
@@ -67,54 +67,28 @@ func (DigitDrawer4) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
 	//--------------------------------------------------------------------------
 
-	// switch t := trits[0]; t {
-	// case -1:
-	// 	gd.DrawLine(vs[1], vs[2])
-	// case 0:
-	// case +1:
-	// 	gd.DrawLine(vs[0], vs[1])
-	// }
-
-	// switch t := trits[1]; t {
-	// case -1:
-	// 	gd.DrawLine(vs[3], vs[4])
-	// case 0:
-	// case +1:
-	// 	gd.DrawLine(vs[2], vs[3])
-	// }
-
-	// switch t := trits[2]; t {
-	// case -1:
-	// 	gd.DrawLine(vs[5], vs[0])
-	// case 0:
-	// case +1:
-	// 	gd.DrawLine(vs[4], vs[5])
-	// }
-
-	//--------------------------------------------------------------------------
-
 	switch t := trits[0]; t {
 	case -1:
-		gd.DrawLine(vs[0], vs[1])
+		gd.DrawLine(vs[5], vs[0])
 	case 0:
 	case +1:
-		gd.DrawLine(vs[1], vs[2])
+		gd.DrawLine(vs[0], vs[1])
 	}
 
 	switch t := trits[1]; t {
 	case -1:
-		gd.DrawLine(vs[2], vs[3])
+		gd.DrawLine(vs[1], vs[2])
 	case 0:
 	case +1:
-		gd.DrawLine(vs[3], vs[4])
+		gd.DrawLine(vs[2], vs[3])
 	}
 
 	switch t := trits[2]; t {
 	case -1:
-		gd.DrawLine(vs[4], vs[5])
+		gd.DrawLine(vs[3], vs[4])
 	case 0:
 	case +1:
-		gd.DrawLine(vs[5], vs[0])
+		gd.DrawLine(vs[4], vs[5])
 	}
 
 	//--------------------------------------------------------------------------

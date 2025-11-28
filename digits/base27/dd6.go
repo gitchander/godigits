@@ -8,9 +8,9 @@ import (
 	"github.com/gitchander/godigits/geom"
 )
 
-type DigitDrawer4 struct{}
+type DigitDrawer6 struct{}
 
-func (DigitDrawer4) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
+func (DigitDrawer6) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
 	b = geom.BoundsAspect(b, AspectRatio)
 	v := b.Vmin()
@@ -65,59 +65,34 @@ func (DigitDrawer4) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
 	trits := calcTritsBase27(digit)
 
-	//--------------------------------------------------------------------------
-
-	// switch t := trits[0]; t {
-	// case -1:
-	// 	gd.DrawLine(vs[1], vs[2])
-	// case 0:
-	// case +1:
-	// 	gd.DrawLine(vs[0], vs[1])
-	// }
-
-	// switch t := trits[1]; t {
-	// case -1:
-	// 	gd.DrawLine(vs[3], vs[4])
-	// case 0:
-	// case +1:
-	// 	gd.DrawLine(vs[2], vs[3])
-	// }
-
-	// switch t := trits[2]; t {
-	// case -1:
-	// 	gd.DrawLine(vs[5], vs[0])
-	// case 0:
-	// case +1:
-	// 	gd.DrawLine(vs[4], vs[5])
-	// }
-
-	//--------------------------------------------------------------------------
+	var (
+		radius   = lw * 0.75
+		lerpKoef = 0.5
+	)
 
 	switch t := trits[0]; t {
 	case -1:
-		gd.DrawLine(vs[0], vs[1])
+		gd.DrawCircle(geom.PtLerp(vs[0], vs[5], lerpKoef), radius)
 	case 0:
 	case +1:
-		gd.DrawLine(vs[1], vs[2])
+		gd.DrawCircle(geom.PtLerp(vs[0], vs[1], lerpKoef), radius)
 	}
 
 	switch t := trits[1]; t {
 	case -1:
-		gd.DrawLine(vs[2], vs[3])
+		gd.DrawCircle(geom.PtLerp(vs[2], vs[1], lerpKoef), radius)
 	case 0:
 	case +1:
-		gd.DrawLine(vs[3], vs[4])
+		gd.DrawCircle(geom.PtLerp(vs[2], vs[3], lerpKoef), radius)
 	}
 
 	switch t := trits[2]; t {
 	case -1:
-		gd.DrawLine(vs[4], vs[5])
+		gd.DrawCircle(geom.PtLerp(vs[4], vs[3], lerpKoef), radius)
 	case 0:
 	case +1:
-		gd.DrawLine(vs[5], vs[0])
+		gd.DrawCircle(geom.PtLerp(vs[4], vs[5], lerpKoef), radius)
 	}
 
-	//--------------------------------------------------------------------------
-
-	c.Stroke()
+	gd.c.Fill()
 }

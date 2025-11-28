@@ -26,9 +26,9 @@ func (DigitDrawer3) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
 	if true {
 		c.MoveTo(10, 40)
-		c.QuadraticTo(50, 10, 50, 40)
+		c.QuadraticTo(50, 10, 50, 50)
 	}
-	c.MoveTo(50, 40)
+	c.MoveTo(50, 50)
 	c.LineTo(50, 160)
 
 	// Draw horizontal lines

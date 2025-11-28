@@ -192,6 +192,11 @@ func (d Digit1) drawDigitV1(c *gg.Context, x, y float64, digitHeight float64, di
 			c.Fill()
 		}
 	}
+
+	if digit == 0 {
+		c.DrawCircle(4, 8, radius)
+		c.Fill()
+	}
 }
 
 func (d Digit1) drawDigitV2(c *gg.Context, x, y float64, digitHeight float64, digit int) {

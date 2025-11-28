@@ -26,6 +26,8 @@ func main() {
 	checkError(makeDigitMatrix("base27bal_d2.png", base27.DigitDrawer2{}))
 	checkError(makeDigitMatrix("base27bal_d3.png", base27.DigitDrawer3{}))
 	checkError(makeDigitMatrix("base27bal_d4.png", base27.DigitDrawer4{}))
+	checkError(makeDigitMatrix("base27bal_d5.png", base27.DigitDrawer5{}))
+	checkError(makeDigitMatrix("base27bal_d6.png", base27.DigitDrawer6{}))
 }
 
 func makeDigits() {

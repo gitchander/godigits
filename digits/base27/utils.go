@@ -21,16 +21,16 @@ func maxInt(a, b int) int {
 	return b
 }
 
-func calcTrits(v int, ds []int) {
+func calcTrits(v int, trits []int) {
 	const (
 		min = -1
 		max = +1
 	)
 	rd := digits.MustNewRestDigiter(min, max)
-	digits.CalcDigits(rd, v, ds)
+	digits.CalcDigits(rd, v, trits)
 }
 
-func calcTritsBase27(v int) []int {
+func calcTritsBal27(v int) []int {
 	trits := make([]int, 3)
 	calcTrits(v, trits)
 	return trits

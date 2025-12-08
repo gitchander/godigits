@@ -8,60 +8,73 @@ import (
 
 type Digit2 struct{}
 
-func (Digit2) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
+func (dd Digit2) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
-	const (
-		koefDA = 0.4
-		//koefDA = 0.5
+	const AspectRatio = 2
+	b = geom.BoundsAspect(b, AspectRatio)
 
-		koefLineWidth = 0.75
-		//koefLineWidth = 0.8
-		//koefLineWidth = 0.9
-		//koefLineWidth = 1.0
+	v := b.Vmin()
 
-		//enableAll = true
-		enableAll = false
+	c.Push()
+	defer c.Pop()
+
+	c.Translate(b.Min.X, b.Min.Y)
+	c.Scale(v, v)
+
+	var (
+		digitSize = geom.MakePoint2f(100, 200)
+		center    = digitSize.DivScalar(2)
 	)
 
 	var (
-		w = min(b.Dx(), b.Dy()/2)
+		// dA        = 20.0
+		// dB        = 20.0
+		// lineWidth = 20.0
 
-		dA = w / 2 * koefDA
-		dB = (w/2 - dA) / 2
+		// dA        = 20.0
+		// dB        = (50 - dA) / 2
+		// lineWidth = dB * 0.8
 
+		dA        = 20.0
+		dB        = 15.0
+		lineWidth = 12.0
+	)
+
+	var (
 		xA = dA
 		xB = dB
 
 		yA = dA
 		yB = dB
-
-		lineWidth = dB * koefLineWidth
 	)
 
-	// c.Push()
-	// defer c.Pop()
-
 	c.SetLineCap(gg.LineCapRound)
-	c.SetLineWidth(lineWidth)
+	c.SetLineWidth(lineWidth * v) // (* v) - because LineWidth is not scaling.
 
-	center := b.Center()
+	yH := 2*yA + yB + yB/2
 
 	// Draw vertical lines
 	if true {
-		c.MoveTo(center.X, center.Y-(2*yA+yB+yB/2))
+		c.MoveTo(center.X, center.Y-yH)
 		c.LineTo(center.X, center.Y-(yB/2))
 
 		c.MoveTo(center.X, center.Y+(yB/2))
-		c.LineTo(center.X, center.Y+(2*yA+yB+yB/2))
+		c.LineTo(center.X, center.Y+yH)
 	}
 
-	trits := calcTrits(digit, 4)
+	var (
+		// enableAll = true
+		// trits     = []int{0, 0, 0, 0}
+
+		enableAll = false
+		trits     = calcTritsBal81(digit)
+	)
 
 	var (
 		x1 = xB
 		x2 = xA + xB
 
-		y0 = center.Y - (2*yA + yB + yB/2)
+		y0 = center.Y - yH
 		y  = y0
 		dy = yA + yB
 	)

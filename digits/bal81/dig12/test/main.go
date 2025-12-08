@@ -29,7 +29,7 @@ func makeDigit2() error {
 	digitSize := image.Pt(sizeX, sizeY)
 
 	var (
-		//d = dig12.MakeDigit1_p1()
+		// d = dig12.MakeDigit1_p1()
 		d = dig12.Digit2{}
 	)
 
@@ -58,7 +58,7 @@ func makeDigit2() error {
 
 	dgdr.DrawMatrixDDB(c, d, nX, nY, digitSize, digits)
 
-	return c.SavePNG("digit2_matrix.png")
+	return c.SavePNG("base81bal_d12.png")
 }
 
 func serialInts(n int) []int {

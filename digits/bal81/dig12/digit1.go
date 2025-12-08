@@ -65,7 +65,7 @@ func (p *digitDrawer1) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 		c.LineTo(dA, 4*dA-dB)
 	}
 
-	trits := calcTrits(digit, 4)
+	trits := calcTritsBal81(digit)
 
 	drawSegment := func(x, y int, rev bool) {
 		var (

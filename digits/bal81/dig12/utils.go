@@ -17,17 +17,19 @@ func clamp(x float64, min, max float64) float64 {
 	return x
 }
 
-func calcTrits(x int, n int) []int {
+func calcTrits(v int, trits []int) {
 	const (
 		min = -1 // digit min
 		max = +1 // digit max
 	)
 	rd := digits.MustNewRestDigiter(min, max)
-	trits := make([]int, n)
-	var trit int
 	for i := range trits {
-		x, trit = rd.RestDigit(x)
-		trits[i] = trit
+		v, trits[i] = rd.RestDigit(v)
 	}
+}
+
+func calcTritsBal81(v int) []int {
+	trits := make([]int, 4)
+	calcTrits(v, trits)
 	return trits
 }

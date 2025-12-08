@@ -232,7 +232,7 @@ func (d Digit2) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 		},
 	}
 
-	trits := calcTritsBase27(digit)
+	trits := calcTritsBal27(digit)
 
 	n := minInt(len(nodes), len(trits))
 	for i, node := range nodes[:n] {
@@ -336,7 +336,7 @@ func (d Digit6) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 		},
 	}
 
-	trits := calcTritsBase27(digit)
+	trits := calcTritsBal27(digit)
 
 	n := minInt(len(nodes), len(trits))
 	for i, node := range nodes[:n] {

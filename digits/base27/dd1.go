@@ -26,7 +26,7 @@ func (DigitDrawer1) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 	c.SetLineCap(gg.LineCapRound)
 	c.SetRGB(0, 0, 0)
 
-	trits := calcTritsBase27(digit)
+	trits := calcTritsBal27(digit)
 
 	var (
 		// xs = []float64{10, 50, 90}

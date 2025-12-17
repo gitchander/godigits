@@ -48,7 +48,7 @@ func run() error {
 
 			matrixXn:    4,
 			matrixYn:    4,
-			digitHeight: 256,
+			digitHeight: 160,
 		},
 		{
 			filename:  "base16_d1_02.png",
@@ -59,7 +59,7 @@ func run() error {
 
 			matrixXn:    7,
 			matrixYn:    5,
-			digitHeight: 200,
+			digitHeight: 160,
 		},
 		{
 			filename:  "base16_d1_03.png",
@@ -81,7 +81,7 @@ func run() error {
 
 			matrixXn:    11,
 			matrixYn:    3,
-			digitHeight: 128,
+			digitHeight: 160,
 		},
 		{
 			filename:  "base16_d2.png",
@@ -92,7 +92,7 @@ func run() error {
 
 			matrixXn:    4,
 			matrixYn:    4,
-			digitHeight: 256,
+			digitHeight: 160,
 		},
 		{
 			filename:  "base16_d3.png",
@@ -103,7 +103,7 @@ func run() error {
 
 			matrixXn:    4,
 			matrixYn:    4,
-			digitHeight: 256,
+			digitHeight: 160,
 		},
 		{
 			filename:  "base16_d4.png",
@@ -114,7 +114,7 @@ func run() error {
 
 			matrixXn:    4,
 			matrixYn:    4,
-			digitHeight: 256,
+			digitHeight: 160,
 		},
 		{
 			filename:  "base16_d5.png",
@@ -125,7 +125,7 @@ func run() error {
 
 			matrixXn:    4,
 			matrixYn:    4,
-			digitHeight: 256,
+			digitHeight: 160,
 		},
 	}
 

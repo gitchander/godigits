@@ -32,7 +32,7 @@ func (d Digit1) drawDigitV1(c *gg.Context, x, y float64, digitHeight float64, di
 		greedWidth = 0.025 * dx
 		lineWidth  = relativeSize * dx
 
-		radius = relativeSize
+		radius = relativeSize * 0.9
 	)
 
 	c.Push()
@@ -150,15 +150,15 @@ func (d Digit1) drawDigitV1(c *gg.Context, x, y float64, digitHeight float64, di
 			bs = parseBools("01000-1-00010")
 
 		//---------------------------------------------
-		case 8, 9:
-			bs = parseBools("01100-0-00110")
-		case 10, 11:
-			bs = parseBools("01100-1-00110")
-		//---------------------------------------------
 		// case 8, 9:
-		// 	bs = parseBools("10100-0-00101")
+		// 	bs = parseBools("01100-0-00110")
 		// case 10, 11:
-		// 	bs = parseBools("10100-1-00101")
+		// 	bs = parseBools("01100-1-00110")
+		//---------------------------------------------
+		case 8, 9:
+			bs = parseBools("10100-0-00101")
+		case 10, 11:
+			bs = parseBools("10100-1-00101")
 		//---------------------------------------------
 
 		case 12, 13:

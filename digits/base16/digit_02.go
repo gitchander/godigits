@@ -141,26 +141,26 @@ func (d Digit2) DrawDigit(c *gg.Context, x, y float64, digitHeight float64, digi
 			bs = parseBools("00000-1-00000")
 
 		//---------------------------------------------
-		case 4, 5:
-			bs = parseBools("01000-0-00010")
-		case 6, 7:
-			bs = parseBools("01000-1-00010")
-
 		// case 4, 5:
-		// 	bs = parseBools("00100-0-00100")
+		// 	bs = parseBools("01000-0-00010")
 		// case 6, 7:
-		// 	bs = parseBools("00100-1-00100")
+		// 	bs = parseBools("01000-1-00010")
+
+		case 4, 5:
+			bs = parseBools("00100-0-00100")
+		case 6, 7:
+			bs = parseBools("00100-1-00100")
 
 		//---------------------------------------------
-		case 8, 9:
-			bs = parseBools("01100-0-00110")
-		case 10, 11:
-			bs = parseBools("01100-1-00110")
-
 		// case 8, 9:
-		// 	bs = parseBools("01010-0-01010")
+		// 	bs = parseBools("01100-0-00110")
 		// case 10, 11:
-		// 	bs = parseBools("01010-1-01010")
+		// 	bs = parseBools("01100-1-00110")
+
+		case 8, 9:
+			bs = parseBools("01010-0-01010")
+		case 10, 11:
+			bs = parseBools("01010-1-01010")
 
 		//---------------------------------------------
 

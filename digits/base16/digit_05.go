@@ -6,7 +6,9 @@ import (
 	"github.com/gitchander/godigits/dgdr"
 )
 
-// Digit Sasha
+// The digits that was created my little son Sasha.
+// He also wanted to come up with something. :)
+
 type Digit5 struct{}
 
 var _ dgdr.DigitDrawer = Digit5{}

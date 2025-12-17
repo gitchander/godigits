@@ -7,25 +7,21 @@ Chander's some experiments with numerical systems and characters of digits.
 
 ### Base3 balanced
 
-![base3bal_d1](images/base3/base3bal_d1.png)
+#### Bal3 Digit 1:
 
----
+![base3bal_d1](images/base3/base3bal_d1.png)
 
 ![base3bal_d1](images/base3/base3bal_d1_rand.png)
 
----
+#### Bal3 Digit 2:
 
 ![base3bal_d2](images/base3/base3bal_d2.png)
 
----
-
 ![base3bal_d2](images/base3/base3bal_d2_rand.png)
 
----
+#### Bal3 Digit 3:
 
 ![base3bal_d3](images/base3/base3bal_d3.png)
-
----
 
 ![base3bal_d3](images/base3/base3bal_d3_rand.png)
 
@@ -55,34 +51,34 @@ Chander's some experiments with numerical systems and characters of digits.
 #### Bal81 Digit 1 (gg):
 ![bal81_d1_gg](images/base81/base81bal_d1_gg.png)
 
-#### Bal81 Digit 12 (gg):
+#### Bal81 Digit 12:
 ![bal81_d12](images/base81/base81bal_d12.png)
 
-#### Bal81 Digit 2 (gg):
+#### Bal81 Digit 2:
 ![bal81_d2_gg](images/base81/base81bal_d2_gg.png)
 
-#### Bal81 Digit 3 (gg):
+#### Bal81 Digit 3:
 ![bal81_d3_gg](images/base81/base81bal_d3_gg.png)
 
-#### Bal81 Digit 4 (gg):
+#### Bal81 Digit 4:
 ![bal81_d4_gg](images/base81/base81bal_d4_gg.png)
 
-#### Bal81 Digit 5 (gg):
+#### Bal81 Digit 5:
 ![bal81_d5_gg](images/base81/base81bal_d5_gg.png)
 
-#### Bal81 Digit 6 (gg):
+#### Bal81 Digit 6:
 ![bal81_d6_gg](images/base81/base81bal_d6_gg.png)
 
-#### Bal81 Digit 7 (gg):
+#### Bal81 Digit 7:
 ![bal81_d7_gg](images/base81/base81bal_d7_gg.png)
 
-#### Bal81 Digit 8 (gg):
+#### Bal81 Digit 8:
 ![bal81_d8_gg](images/base81/base81bal_d8_gg.png)
 
-#### Bal81 Digit 9 (gg):
+#### Bal81 Digit 9:
 ![bal81_d9_gg](images/base81/base81bal_d9_gg.png)
 
-#### Bal81 Digit 10 (gg):
+#### Bal81 Digit 10:
 ![bal81_d10_gg](images/base81/base81bal_d10_gg.png)
 
 ---
@@ -107,9 +103,13 @@ Chander's some experiments with numerical systems and characters of digits.
 
 ![base16_d5](images/base16/base16_d5.png)
 
+---
+
 ### Base25
 
 ![base25_d1](images/base25/base25_d1.png)
+
+---
 
 ### Base39
 

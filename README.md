@@ -25,6 +25,12 @@ Chander's some experiments with numerical systems and characters of digits.
 
 ![base3bal_d3](images/base3/base3bal_d3_rand.png)
 
+#### Bal3 Digit 4:
+
+![base3bal_d4](images/base3/base3bal_d4.png)
+
+![base3bal_d4](images/base3/base3bal_d4_rand.png)
+
 ---
 
 ### Base27 balanced

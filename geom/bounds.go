@@ -96,7 +96,7 @@ func (b Bounds) Vmax() float64 {
 //------------------------------------------------------------------------------
 
 // aspectRatio = dy / dx
-func BoundsAspect(b Bounds, aspectRatio float64) Bounds {
+func BoundsAspect(b Bounds, aspectRatio AspectRatioF) Bounds {
 
 	var (
 		dx = b.Dx()
@@ -104,8 +104,8 @@ func BoundsAspect(b Bounds, aspectRatio float64) Bounds {
 	)
 
 	var (
-		dx1 = dy / aspectRatio
-		dy1 = dx * aspectRatio
+		dx1 = aspectRatio.CalcDx(dy)
+		dy1 = aspectRatio.CalcDy(dx)
 	)
 
 	if true {

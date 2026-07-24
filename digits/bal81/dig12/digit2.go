@@ -10,8 +10,8 @@ type Digit2 struct{}
 
 func (dd Digit2) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
-	const AspectRatio = 2
-	b = geom.BoundsAspect(b, AspectRatio)
+	aspectRatio := geom.MakeAspectRatioF(1, 2)
+	b = geom.BoundsAspect(b, aspectRatio)
 
 	v := b.Vmin()
 

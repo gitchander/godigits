@@ -10,7 +10,7 @@ type DigitDrawer1 struct{}
 
 func (DigitDrawer1) DrawDigit(c *gg.Context, b geom.Bounds, digit int) {
 
-	b = geom.BoundsAspect(b, AspectRatio)
+	b = geom.BoundsAspect(b, DigitAspectRatio)
 	v := b.Vmin()
 
 	c.Push()

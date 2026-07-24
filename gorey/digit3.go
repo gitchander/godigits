@@ -48,7 +48,7 @@ func (d DigitV3) draw1(c *cairo.Canvas, r Bounds, level int) {
 	)
 
 	dSize := image.Pt(nx, ny)
-	aspectRatio := float64(dSize.Y) / float64(dSize.X)
+	aspectRatio := geom.MakeAspectRatioF(float64(dSize.X), float64(dSize.Y))
 
 	var (
 		r1 = r.Shrink(marginAbs)
@@ -308,7 +308,7 @@ func (d DigitV3) draw2(c *cairo.Canvas, r Bounds, level int) {
 	)
 
 	dSize := image.Pt(nx, ny)
-	aspectRatio := float64(dSize.Y) / float64(dSize.X)
+	aspectRatio := geom.MakeAspectRatioF(float64(dSize.X), float64(dSize.Y))
 
 	var (
 		r1 = r.Shrink(marginAbs)
@@ -557,7 +557,7 @@ func (d DigitV3) draw3(c *cairo.Canvas, r Bounds, level int) {
 	)
 
 	dSize := image.Pt(nx, ny)
-	aspectRatio := float64(dSize.Y) / float64(dSize.X)
+	aspectRatio := geom.MakeAspectRatioF(float64(dSize.X), float64(dSize.Y))
 
 	var (
 		r1 = r.Shrink(marginAbs)

@@ -21,10 +21,12 @@ func main() {
 	checkError(makeDigitMatrix("base3bal_d1.png", base3.DigitDrawer1{}))
 	checkError(makeDigitMatrix("base3bal_d2.png", base3.DigitDrawer2{}))
 	checkError(makeDigitMatrix("base3bal_d3.png", base3.DigitDrawer3{}))
+	checkError(makeDigitMatrix("base3bal_d4.png", base3.DigitDrawer4{}))
 
 	checkError(makeRandDigits("base3bal_d1_rand.png", base3.DigitDrawer1{}))
 	checkError(makeRandDigits("base3bal_d2_rand.png", base3.DigitDrawer2{}))
 	checkError(makeRandDigits("base3bal_d3_rand.png", base3.DigitDrawer3{}))
+	checkError(makeRandDigits("base3bal_d4_rand.png", base3.DigitDrawer4{}))
 }
 
 func checkError(err error) {
@@ -109,7 +111,7 @@ func testDigits() {
 func makeRandDigits(filename string, d dgdr.DigitDrawerB) error {
 
 	var (
-		sizeX = 32
+		sizeX = 64
 		sizeY = base3.CalcSizeY(sizeX)
 	)
 
@@ -154,7 +156,7 @@ func makeRandDigits(filename string, d dgdr.DigitDrawerB) error {
 func makeDigitMatrix(filename string, d dgdr.DigitDrawerB) error {
 
 	var (
-		sizeX = 50
+		sizeX = 64
 		sizeY = base3.CalcSizeY(sizeX)
 	)
 

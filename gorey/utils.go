@@ -6,6 +6,8 @@ import (
 	"github.com/gitchander/godigits/geom"
 )
 
+//------------------------------------------------------------------------------
+
 func minFloat64(a, b float64) float64 {
 	if a < b {
 		return a
@@ -20,7 +22,8 @@ func maxFloat64(a, b float64) float64 {
 	return b
 }
 
-// ------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
 func minInt(a, b int) int {
 	if a < b {
 		return a
@@ -35,7 +38,8 @@ func maxInt(a, b int) int {
 	return b
 }
 
-// ------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
 func parseInt(s string) (int, error) {
 	return strconv.Atoi(s)
 }
@@ -45,6 +49,7 @@ func formatInt(a int) string {
 }
 
 //------------------------------------------------------------------------------
+
 // GCD - Greatest Common Denominator: largest number that can devide two numbers.
 // GCD - Greatest Common Divisor
 // https://en.wikipedia.org/wiki/Greatest_common_divisor
@@ -56,7 +61,8 @@ func gcd(a, b int) int {
 	return gcd(b, a%b)
 }
 
-// ------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
 // pow2, a^2, a*a
 func square(a float64) float64 {
 	return a * a
@@ -67,7 +73,8 @@ func cube(a float64) float64 {
 	return a * a * a
 }
 
-// ------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
 func vmin(b geom.Bounds) float64 {
 	return minFloat64(b.Dx(), b.Dy()) / 100.0
 }

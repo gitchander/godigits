@@ -34,7 +34,7 @@ func (d DigitV1) Draw(c *cairo.Canvas, r Bounds, level int) {
 	)
 
 	dSize := image.Pt(8, 8)
-	aspectRatio := float64(dSize.Y) / float64(dSize.X)
+	aspectRatio := geom.MakeAspectRatioF(float64(dSize.X), float64(dSize.Y))
 
 	var (
 		r1 = r.Shrink(marginAbs)

@@ -190,7 +190,7 @@ func makeDigitMatrix(filename string, d dgdr.DigitDrawerB) error {
 
 	var (
 		sizeX = 64
-		sizeY = base27.AspectRatio * sizeX
+		sizeY = base27.CalcSizeY(sizeX)
 	)
 
 	digitSize := image.Pt(sizeX, sizeY)

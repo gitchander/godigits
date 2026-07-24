@@ -89,7 +89,7 @@ func Square(o Object) Object {
 // Standard ISO216 (A0, A1, ... A4, ... A7)
 func ISO216(o Object) Object {
 	return Aspector{
-		AspectRatio: math.Sqrt2,
+		AspectRatio: geom.MakeAspectRatioF(1, math.Sqrt2),
 		Content: Rectangle{
 			o,
 		},

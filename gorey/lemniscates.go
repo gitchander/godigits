@@ -195,7 +195,7 @@ func drawLemniscate(c *cairo.Canvas, r Bounds) {
 
 	r1 := r.Shrink(geom.MakeFrame1(lineWidthAbs / 2))
 
-	const aspectRatio = 1.0 / (2.0 * math.Sqrt2)
+	aspectRatio := geom.MakeAspectRatioF((2.0 * math.Sqrt2), 1)
 
 	r2 := subRectByAspectRatio(r1, aspectRatio)
 
